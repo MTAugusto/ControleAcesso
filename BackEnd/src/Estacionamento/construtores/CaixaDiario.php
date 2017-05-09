@@ -1,3 +1,4 @@
+<?php
 class CaixaDiario{
 
 private $id;
@@ -90,3 +91,4 @@ public function toString(){
 }
 
 }
+?>
