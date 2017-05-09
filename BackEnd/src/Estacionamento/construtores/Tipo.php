@@ -1,4 +1,4 @@
-<<?php
+<?php
   class Tipo{
 
   private $id;
