@@ -55,14 +55,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Added Successfully.'
+				'status_message' =>'Adicionado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Addition Failed.'
+				'status_message' =>'Houve um erro ao adicionar.'
 			);
 		}
 		header('Content-Type: application/json');
@@ -93,14 +93,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Deleted Successfully.'
+				'status_message' =>'Deletado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Deletion Failed.'
+				'status_message' =>'Houve um erro ao deletar.'
 			);
 		}
 		header('Content-Type: application/json');
@@ -118,14 +118,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Updated Successfully.'
+				'status_message' =>'Atualizado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Updation Failed.'
+				'status_message' =>'Houve um erro ao atualizar.'
 			);
 		}
 		header('Content-Type: application/json');
