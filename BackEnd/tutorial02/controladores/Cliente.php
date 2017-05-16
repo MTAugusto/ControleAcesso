@@ -1,13 +1,15 @@
+<?php
+include './controladores/ClientesDAO.php';
+?>
 <?php 
 	
+
 	ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
+	ini_set('display_startup_erros',1);
+	error_reporting(E_ALL);
 
 	// Connect to database
 	$connection=mysqli_connect('localhost','root','root','controleacesso');	
-
-	include '.../persistencias/ClienteDAO.php'; 
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
 

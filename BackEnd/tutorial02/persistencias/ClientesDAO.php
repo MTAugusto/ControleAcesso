@@ -1,8 +1,5 @@
 <?php 
 	
-	// Connect to database
-	$connection=mysqli_connect('localhost','root','root','controleacesso');	
-
 	function insert()
 	{
 		global $connection;
@@ -29,7 +26,8 @@
 	}
 	function retreave($id=0)
 	{
-		global $connection;
+		$connection=mysqli_connect('localhost','root','root','controleacesso');	
+		//global $connection;
 		$query="SELECT * FROM clientes";
 		if($id != 0)
 		{
