@@ -1,5 +1,9 @@
 <?php
-  class Usuario{
+namespace Estacionamento\construtores;
+
+ use Estacionamento\construtores\Entidade;
+
+  class Usuario extends Entidade{
 
   private $id;
   private $nome;
