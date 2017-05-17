@@ -1,8 +1,7 @@
 <?php
 include '../persistencias/ClienteDAO.php';
 include '../persistencias/Connect.php';
-
-use \ControleAcesso\BackEnd\tutorial02\jwt\ValidationData;
+include '../controladores/Token.php';
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
 

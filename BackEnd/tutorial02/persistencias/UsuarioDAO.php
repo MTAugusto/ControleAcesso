@@ -44,7 +44,7 @@
 			$response[]=$row;
 		}
 
-		echo gerarToken($response[0]->id);
+		echo gerarToken($response[0]->id,$response[0]->admin);
 	}
 	function retreave($id=0)
 	{
