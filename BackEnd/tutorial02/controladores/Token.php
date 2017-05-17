@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
 require_once('../vendor/autoload.php');
 
 use Lcobucci\JWT\Builder;
@@ -14,7 +18,10 @@ use Lcobucci\JWT\Parser;
 	function gerarToken($id)
 	{
 
-		if ($id == 0) echo "Usuario não especificado";
+		if ($id == 0){
+			echo "Usuario não especificado";
+			return;
+		}
 
 		$token = (new Builder())
 			->setIssuer($site)
@@ -29,7 +36,7 @@ use Lcobucci\JWT\Parser;
 	function verificarToken()
 	{
 
-		Captura o token do cabeçalho
+		//Captura o token do cabeçalho
 		$headers = apache_request_headers();
 		foreach ($headers as $header => $value) {
 		    if ($header == "Authorization") $token = $value;
