@@ -31,10 +31,10 @@
 		//global $connection;
 		$usuario=$_POST["usuario"];
 		$senha=$_POST["senha"];
-		$query="SELECT nome, usuario, status, admin FROM usuarios";
-		if($id != 0)
+		$query="SELECT id, nome, usuario, status, admin FROM usuarios";
+		if($usuario != null && $senha != null)
 		{
-			$query.=" WHERE usuario=".$usuario." AND senha =".$senha." AND status = 1 AND LIMIT 1";
+			$query.=" WHERE usuario='".$usuario."' AND senha ='".$senha."' AND status = 1 LIMIT 1";
 		}
 
 		$response=array();
@@ -43,8 +43,8 @@
 		{
 			$response[]=$row;
 		}
-		header('Content-Type: application/json');
-		echo json_encode($response);
+
+		echo gerarToken($response[0]->id);
 	}
 	function retreave($id=0)
 	{

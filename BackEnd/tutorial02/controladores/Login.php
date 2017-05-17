@@ -1,32 +1,23 @@
 <?php
-include '../persistencias/ClienteDAO.php';
+include '../persistencias/UsuarioDAO.php';
 include '../persistencias/Connect.php';
+include '../controladores/Token.php';
 
-use \ControleAcesso\BackEnd\tutorial02\jwt\ValidationData;
-use \ControleAcesso\BackEnd\tutorial02\jwt\Builder;
+// ini_set('display_errors',1);
+// ini_set('display_startup_erros',1);
+// error_reporting(E_ALL);
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
-	$token = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+
+
 
 	switch($request_method)
 	{
 		case 'GET':
-			echo "teste - ";
-			echo $token;
+			verificarToken();
 			break;
 		case 'POST':
-			// Insert Product
-			insert();
-			break;
-		case 'PUT':
-			// Update Product
-			$id=intval($_GET["id"]);
-			update($id);
-			break;
-		case 'DELETE':
-			// Delete Product
-			$id=intval($_GET["id"]);
-			delete($id);
+			login();
 			break;
 		default:
 			// Invalid Request Method

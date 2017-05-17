@@ -15,8 +15,11 @@ use Lcobucci\JWT\Parser;
 	$key = base64_encode("#Bolsomito2018");
 	$site = "http://www.montanheiro.me";
 
-	function gerarToken($id)
+	function gerarToken($id=0)
 	{
+		global $signer;
+		global $key;
+		global $site;
 
 		if ($id == 0){
 			echo "Usuario não especificado";
@@ -25,7 +28,7 @@ use Lcobucci\JWT\Parser;
 
 		$token = (new Builder())
 			->setIssuer($site)
-            ->setExpiration(time() + 3600)
+            ->setExpiration(time() + (1*3600)) //mudar o fator da multiplicação para aumentar as horas de validade do token
             ->set('id', $id)
             ->sign($signer, $key) 
             ->getToken();
@@ -35,6 +38,9 @@ use Lcobucci\JWT\Parser;
 
 	function verificarToken()
 	{
+		global $signer;
+		global $key;
+		global $site;
 
 		//Captura o token do cabeçalho
 		$headers = apache_request_headers();
