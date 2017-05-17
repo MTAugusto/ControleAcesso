@@ -1,8 +1,8 @@
 <?php
 
-// ini_set('display_errors',1);
-// ini_set('display_startup_erros',1);
-// error_reporting(E_ALL);
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
 
 require_once('../vendor/autoload.php');
 
@@ -159,5 +159,57 @@ use Lcobucci\JWT\Parser;
 			}
 		}
 		return true;
+	}
+
+	function getIdUser(){
+		global $signer;
+		global $key;
+		global $site;
+
+		//Captura o token do cabeçalho
+		$headers = apache_request_headers();
+		foreach ($headers as $header => $value) {
+		    if ($header == "Authorization") $token = $value;
+		}
+
+		//Verifica se tem token no cabeçalho
+		if (!$token){
+			$response=array(
+				'status' => 0,
+				'message' =>'O token não foi enviado corretamente.'
+			);
+			header('Content-Type: application/json');
+			echo json_encode($response);
+			return 0;
+		}else{
+			// Cria um objeto Token para validar e instancia o validador
+			try {
+    			$token = (new Parser())->parse((string) $token);
+			} catch (Exception $e) {
+    			$response=array(
+					'status' => 0,
+					'message' =>'O token está no formato errado.'
+				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return 0;
+			}
+			$data = new ValidationData();
+
+			//verifica a assinatura e a validade
+			if ($token->verify($signer, $key) && $token->validate($data)) {
+				return $token->getClaim('id');
+			}
+			else
+			{
+				$response=array(
+					'status' => 0,
+					'message' =>'Token invalido.'
+				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return 0;
+			}
+		}
 	}
 ?>

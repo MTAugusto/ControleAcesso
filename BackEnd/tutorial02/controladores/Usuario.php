@@ -8,31 +8,39 @@ include '../controladores/Token.php';
 	switch($request_method)
 	{
 		case 'GET':
-			// Retrive Products
-			if(!empty($_GET["id"]))
-			{
-				verificarLogin();
-				$id=intval($_GET["id"]);
-				retreave($id);
+			//buscando um ou vários usuários
+			if(verificarLogin("admin")){
+				if(!empty($_GET["id"]))
+				{
+					$id=intval($_GET["id"]);
+					retreave($id);
+				}
+				else
+				{
+					retreave();
+				}
+			}else{
+				retreave(getIdUser());
 			}
-			else
-			{
-				if(verificarLogin("admin"))	retreave();
-			}
+
 			break;
 		case 'POST':
 			// Insert Product
-			insert();
+			if(verificarLogin("admin")) insert();
 			break;
 		case 'PUT':
 			// Update Product
-			$id=intval($_GET["id"]);
-			update($id);
+			if(verificarLogin("admin")){
+				$id=intval($_GET["id"]);
+				update($id);
+			}else update(getIdUser());
 			break;
 		case 'DELETE':
 			// Delete Product
-			$id=intval($_GET["id"]);
-			delete($id);
+			if(verificarLogin("admin")){
+				$id=intval($_GET["id"]);
+				delete($id);
+			}			
 			break;
 		default:
 			// Invalid Request Method
