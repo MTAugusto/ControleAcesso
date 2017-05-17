@@ -8,7 +8,7 @@
 		$senha=$_POST["senha"];
 		$status=$_POST["status"];
 		$admin=$_POST["admin"];
-		$query="INSERT INTO usuarios SET nome='{$nome}', usuario='{$usuario}', senha='{$senha}', status={$status}, admin={$admin}";
+		$query="INSERT INTO usuarios SET nome='{$nome}', usuario='{$usuario}', senha='{$senha}', status='{$status}', admin='{$admin}'";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -26,9 +26,11 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function check($usuario, $senha){
+	function login(){
 		global $connection;
 		//global $connection;
+		$usuario=$_POST["usuario"];
+		$senha=$_POST["senha"];
 		$query="SELECT nome, usuario, status, admin FROM usuarios";
 		if($id != 0)
 		{
