@@ -39,10 +39,7 @@
 			break;
 	}
 
-
-	// CLASSES DAO
-
-	
+	// CLASSES DAO 
 
 	function insert()
 	{

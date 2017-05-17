@@ -3,22 +3,16 @@ include '../persistencias/ClienteDAO.php';
 include '../persistencias/Connect.php';
 
 use \ControleAcesso\BackEnd\tutorial02\jwt\ValidationData;
+use \ControleAcesso\BackEnd\tutorial02\jwt\Builder;
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
+	$token = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
 
 	switch($request_method)
 	{
 		case 'GET':
-			// Retrive Products
-			if(!empty($_GET["id"]))
-			{
-				$id=intval($_GET["id"]);
-				retreave($id);
-			}
-			else
-			{
-				retreave();
-			}
+			echo "teste - ";
+			echo $token;
 			break;
 		case 'POST':
 			// Insert Product

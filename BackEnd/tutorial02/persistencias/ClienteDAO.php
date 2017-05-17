@@ -1,5 +1,5 @@
 <?php 
-	
+
 	function insert()
 	{
 		global $connection;
@@ -11,14 +11,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Added Successfully.'
+				'message' =>'Adicionado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Addition Failed.'
+				'message' =>'Houve um erro ao adicionar.'
 			);
 		}
 		header('Content-Type: application/json');
@@ -26,7 +26,7 @@
 	}
 	function retreave($id=0)
 	{
-		$connection=mysqli_connect('localhost','root','root','controleacesso');	
+		global $connection;
 		//global $connection;
 		$query="SELECT * FROM clientes";
 		if($id != 0)
@@ -50,14 +50,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Deleted Successfully.'
+				'message' =>'Deletado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Deletion Failed.'
+				'message' =>'Houve um erro ao deletar.'
 			);
 		}
 		header('Content-Type: application/json');
@@ -75,14 +75,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Product Updated Successfully.'
+				'message' =>'Atualizado com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'Product Updation Failed.'
+				'message' =>'Houve um erro ao atualizar.'
 			);
 		}
 		header('Content-Type: application/json');
@@ -91,3 +91,4 @@
 
 	// Close database connection
 	mysqli_close($connection);
+	
