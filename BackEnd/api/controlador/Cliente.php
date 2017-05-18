@@ -9,6 +9,7 @@ include '../negocio/Token.php';
 	{
 		case 'GET':
 			if(verificarLogin()){
+
 				if(!empty($_GET["id"]))
 				{
 					$id=intval($_GET["id"]);
@@ -18,11 +19,10 @@ include '../negocio/Token.php';
 			}
 			break;
 		case 'POST':
-			insert();
+			if(verificarLogin()) insert();
 			break;
 		case 'PUT':
-			$id=intval($_GET["id"]);
-			update($id);
+			if(verificarLogin()) update();
 			break;
 		// case 'DELETE':
 		// 	// Delete Product
