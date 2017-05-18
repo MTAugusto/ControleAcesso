@@ -1,7 +1,7 @@
 <?php
-include '../persistencias/ClienteDAO.php';
-include '../persistencias/Connect.php';
-include '../controladores/Token.php';
+include '../persistencia/ClienteDAO.php';
+include '../persistencia/Connect.php';
+include '../negocio/Token.php';
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
 

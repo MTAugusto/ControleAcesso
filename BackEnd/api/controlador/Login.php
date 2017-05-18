@@ -1,7 +1,7 @@
 <?php
-include '../persistencias/UsuarioDAO.php';
-include '../persistencias/Connect.php';
-include '../controladores/Token.php';
+include '../persistencia/UsuarioDAO.php';
+include '../persistencia/Connect.php';
+include '../negocio/Token.php';
 
 // ini_set('display_errors',1);
 // ini_set('display_startup_erros',1);

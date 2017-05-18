@@ -1,8 +1,8 @@
 <?php
 
-include '../persistencias/UsuarioDAO.php';
-include '../persistencias/Connect.php';
-include '../controladores/Token.php';
+include '../persistencia/UsuarioDAO.php';
+include '../persistencia/Connect.php';
+include '../negocio/Token.php';
 
 require_once('../vendor/autoload.php');
 
