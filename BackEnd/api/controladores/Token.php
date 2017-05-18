@@ -76,8 +76,19 @@ use Lcobucci\JWT\Parser;
 			
 			$data = new ValidationData();
 
-			//verifica a assinatura e a validade
-			if ($token->verify($signer, $key) && $token->validate($data)) {
+			//verifica a validade do token
+			if (!$token->validate($data)) {
+				$response=array(
+					'status' => 0,
+					'message' =>'Token expirado, faça um novo login.'
+				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return false;
+			}
+
+			//verifica a assinatura do token
+			if ($token->verify($signer, $key)) {
 				
 				$response=array(
 					'status' => 1,
@@ -133,8 +144,19 @@ use Lcobucci\JWT\Parser;
 			}
 			$data = new ValidationData();
 
-			//verifica a assinatura e a validade
-			if ($token->verify($signer, $key) && $token->validate($data)) {
+			//verifica a validade do token
+			if (!$token->validate($data)) {
+				$response=array(
+					'status' => 0,
+					'message' =>'Token expirado, faça um novo login.'
+				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return false;
+			}
+
+			//verifica a assinatura do token
+			if ($token->verify($signer, $key)) {
 				if ($tipo == "admin") {
 					if ($token->getClaim('admin') != 1) {
 						$response=array(
@@ -196,8 +218,19 @@ use Lcobucci\JWT\Parser;
 			}
 			$data = new ValidationData();
 
-			//verifica a assinatura e a validade
-			if ($token->verify($signer, $key) && $token->validate($data)) {
+			//verifica a validade do token
+			if (!$token->validate($data)) {
+				$response=array(
+					'status' => 0,
+					'message' =>'Token expirado, faça um novo login.'
+				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return false;
+			}
+
+			//verifica a assinatura do token
+			if ($token->verify($signer, $key)) {
 				return $token->getClaim('id');
 			}
 			else
