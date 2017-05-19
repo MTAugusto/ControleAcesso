@@ -1,5 +1,5 @@
-<?php 
-	
+<?php
+
 	// Connect to database
 	$connection=mysqli_connect('localhost','root','root','controleacesso');
 
@@ -12,11 +12,11 @@
 			if(!empty($_GET["id"]))
 			{
 				$id=intval($_GET["id"]);
-				retreave($id);
+				retrieve($id);
 			}
 			else
 			{
-				retreave();
+				retrieve();
 			}
 			break;
 		case 'POST':
@@ -42,7 +42,7 @@
 
 	// CLASSES DAO
 
-	
+
 
 	function insert()
 	{
@@ -68,7 +68,7 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function retreave($id=0)
+	function retrieve($id=0)
 	{
 		global $connection;
 		$query="SELECT * FROM clientes";
