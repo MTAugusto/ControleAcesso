@@ -8,26 +8,34 @@
 		$modelo=$_POST["modelo"];
 		$cor=$_POST["cor"];
 		$ismensal=$_POST["ismensal"];
+		$cliente=$_POST["cliente"];
 		$query1="INSERT INTO veiculos SET tipo={$tipo}, placa='{$placa}', modelo='{$modelo}', cor='{$cor}', ismensal = {$ismensal}";
-		$query2="SELECT * FROM veiculos WHERE placa='".$placa."' LIMIT 1";
 
 		if($result = mysqli_query($connection, $query1))
 		{
 
+			//pegando o id do veiculo inserido pela placa - $veiculo[0]->id
+			$query2="SELECT * FROM veiculos WHERE placa='".$placa."' LIMIT 1";
 			$veiculo=array();
-			$result2=mysqli_query($connection, $query);
+			$result2=mysqli_query($connection, $query2);
 			while($row=mysqli_fetch_object($result2))
 			{
 				$veiculo[]=$row;
 			}
-			$idTest = $veiculo[0]->id;
 
-			var_dump($veiculo);
-
-			$response=array(
-				'status' => 1,
-				'message' =>'Adicionado com sucesso.'
-			);
+			//associando o veiculo a um cliente
+			$query3 = "INSERT INTO clientes_veiculos SET veiculo={$veiculo[0]->id}, cliente={$cliente}";
+			if($result = mysqli_query($connection, $query3)){
+				$response=array(
+					'status' => 1,
+					'message' =>'Adicionado com sucesso.'
+				);
+			}else{
+					$response=array(
+					'status' => 0,
+					'message' =>'Houve um erro ao associar o veiculo ao cliente.'
+				);
+			}
 		}
 		else
 		{
@@ -37,7 +45,7 @@
 			);
 		}
 		header('Content-Type: application/json');
-		//echo json_encode($response);
+		echo json_encode($response);
 	}
 	function retrieve($id=0)
 	{
