@@ -168,7 +168,7 @@
                     class="close" title="Close Modal">&times;</span>
 
                     <!-- Modal Content -->
-                    <form class="modal-content-login animate" action="/action_page.php">
+                    <form class="modal-content-login animate">
                       <div class="imgcontainer">
                         <img src="img/img_avatar2.png" alt="Avatar" class="avatar">
                       </div>
@@ -176,25 +176,25 @@
                     <div class="container-login">
                          <div class="row">
                             <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
-                                <label for="email">Email</label>
+                                <input id="usuario" type="text" class=".validate" required data-length="30">
+                                <label for="email">Login</label>
                             </div>
                           </div>
 
                           <div class="row">
                                 <div class="input-field col s12">
-                                  <input id="password" type="password" class="validate">
+                                  <input id="password" type="password" class="validate" required>
                                   <label for="password">Password</label>
                                 </div>
                           </div>
 
-                          <button type="submit">Login</button>
+                          <button id="login-submit" type="submit" onclick="fnConsomeWs()">Login</button>
                           <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
                           <label for="filled-in-box">Mantenha-me conectado</label>
                     </div>
 
                       <div class="container-login" style="background-color:#f1f1f1">
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button id="refresh" type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                         <span class="psw">Esqueceu sua <a href="#">senha?</a></span>
                       </div>
                     </form>
@@ -203,6 +203,7 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
+  <script src="js/autentica-login.js"></script>
   <script src="js/init.js"></script>
 
   </body>
