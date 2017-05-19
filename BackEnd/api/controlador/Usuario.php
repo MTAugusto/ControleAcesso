@@ -16,7 +16,7 @@ use Lcobucci\JWT\Parser;
 	switch($request_method)
 	{
 		case 'GET':
-			
+
 			//Gambiarra para resolver problema especifico dessa classe
 			//problema de duas permissões para acesso
 
@@ -82,12 +82,12 @@ use Lcobucci\JWT\Parser;
 			if ($token->getClaim('admin') == 1) {
 				if(!empty($_GET["id"])){
 					$id=intval($_GET["id"]);
-					retreave($id);
+					retrieve($id);
 				} else {
-					retreave();
+					retrieve();
 				}
 			}else{
-				retreave(getIdUser());
+				retrieve(getIdUser());
 			}
 
 			break;
@@ -96,7 +96,7 @@ use Lcobucci\JWT\Parser;
 			if(verificarLogin("admin")) insert();
 			break;
 		case 'PUT':
-			
+
 			//Gambiarra para resolver problema especifico dessa classe
 			//problema de duas permissões para acesso
 
@@ -167,14 +167,14 @@ use Lcobucci\JWT\Parser;
 			}else{
 				update(getIdUser());
 			}
-			
+
 			break;
 		// case 'DELETE':
 		// 	// Delete Product
 		// 	if(verificarLogin("admin")){
 		// 		$id=intval($_GET["id"]);
 		// 		delete($id);
-		// 	}			
+		// 	}
 		// 	break;
 		default:
 			// Invalid Request Method
