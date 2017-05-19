@@ -13,9 +13,9 @@ include '../negocio/Token.php';
 				if(!empty($_GET["id"]))
 				{
 					$id=intval($_GET["id"]);
-					retreave($id);
+					retrieve($id);
 				}
-				else retreave();
+				else retrieve();
 			}
 			break;
 		case 'POST':
