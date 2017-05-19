@@ -4,22 +4,28 @@
 	{
 		global $connection;
 
+
+		// VERIFICAR SE JÁ EXISTE UMA CAIXA ABERTO
+
+		// VERIFICAR SE JÁ EXISTE UMA CAIXA ABERTO
+
+		// VERIFICAR SE JÁ EXISTE UMA CAIXA ABERTO
+
 		$date = date("Y-m-d H:i:s");
-		$fechamento=$_POST["fechamento"];
-		$valortotal=$_POST["valortotal"];
-		$query="INSERT INTO caixadiarios SET abertura='{$date}'";
+		$dataAtual = date('Y-m-d');
+		$query="INSERT INTO caixadiarios SET abertura='{$date}', data='{$dataAtual}'";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'message' =>'Adicionado com sucesso.'
+				'message' =>'Caixa Diário aberto com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'message' =>'Houve um erro ao adicionar.'
+				'message' =>'Houve um erro ao abrir o caixa diário.'
 			);
 		}
 		header('Content-Type: application/json');
