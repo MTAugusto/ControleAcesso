@@ -36,6 +36,24 @@
 					'message' =>'Houve um erro ao associar o veiculo ao cliente.'
 				);
 			}
+
+			//verificando se é mensal e criando a mensalidade
+			if ($ismensal) {
+				$dataAtual = date('Y-m-d');
+				$query4 = "INSERT INTO mensalidades SET veiculo={$veiculo[0]->id}, cliente={$cliente}, datavencimento='{$dataAtual}'";
+
+				if($result = mysqli_query($connection, $query4)){
+					$response=array(
+						'status' => 1,
+						'message' =>'Adicionado com sucesso.'
+					);
+				}else{
+						$response=array(
+						'status' => 0,
+						'message' =>'Houve um erro ao criar a mensalidade.'
+					);
+				}
+			}
 		}
 		else
 		{
