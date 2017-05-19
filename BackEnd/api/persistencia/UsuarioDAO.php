@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function insert()
 	{
@@ -46,7 +46,7 @@
 
 		echo gerarToken($response[0]->id,$response[0]->admin);
 	}
-	function retreave($id=0)
+	function retrieve($id=0)
 	{
 		global $connection;
 		//global $connection;
@@ -115,4 +115,3 @@
 
 	// Close database connection
 	mysqli_close($connection);
-	
