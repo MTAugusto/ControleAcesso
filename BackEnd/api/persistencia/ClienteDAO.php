@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function insert()
 	{
@@ -24,10 +24,9 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function retreave($id=0)
+	function retrieve($id=0)
 	{
 		global $connection;
-		//global $connection;
 		$query="SELECT * FROM clientes";
 		if($id != 0)
 		{
@@ -40,7 +39,7 @@
 			$response[]=$row;
 		}
 		header('Content-Type: application/json');
-		return json_encode($response);
+		echo json_encode($response);
 	}
 	function delete($id)
 	{
@@ -63,14 +62,15 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function update($id)
+	function update()
 	{
 		global $connection;
 		parse_str(file_get_contents("php://input"),$post_vars);
-		$nome=$post_vars["nome"];
+		$id=$post_vars['id'];
+		$nome=$post_vars['nome'];
 		$cpf=$post_vars["cpf"];
 		$telefone=$post_vars["telefone"];
-		$query="UPDATE clientes SET nome='{$nome}', cpf={$cpf}, telefone={$telefone}' WHERE id=".$id;
+		$query="UPDATE clientes SET nome='{$nome}', cpf='{$cpf}', telefone='{$telefone}' WHERE id=".$id;
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -91,4 +91,3 @@
 
 	// Close database connection
 	mysqli_close($connection);
-	

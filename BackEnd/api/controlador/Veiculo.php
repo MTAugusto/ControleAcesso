@@ -1,5 +1,5 @@
 <?php
-include '../persistencia/ClienteDAO.php';
+include '../persistencia/VeiculoDAO.php';
 include '../persistencia/Connect.php';
 include '../negocio/Token.php';
 
@@ -14,6 +14,8 @@ include '../negocio/Token.php';
 				{
 					$id=intval($_GET["id"]);
 					retrieve($id);
+				}else if (!empty($_GET["placa"])) {
+					retrievePlaca($_GET["placa"]);
 				}
 				else retrieve();
 			}

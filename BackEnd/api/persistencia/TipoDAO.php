@@ -4,11 +4,9 @@
 	{
 		global $connection;
 		$nome=$_POST["nome"];
-		$usuario=$_POST["usuario"];
-		$senha=$_POST["senha"];
-		$status=$_POST["status"];
-		$admin=$_POST["admin"];
-		$query="INSERT INTO usuarios SET nome='{$nome}', usuario='{$usuario}', senha='{$senha}', status='{$status}', admin='{$admin}'";
+		$valorporhora=$_POST["valorporhora"];
+		$valorpormes=$_POST["valorpormes"];
+		$query="INSERT INTO tipos SET nome='{$nome}', valorporhora='{$valorporhora}', valorpormes='{$valorpormes}'";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -26,31 +24,10 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function login(){
-		global $connection;
-		//global $connection;
-		$usuario=$_POST["usuario"];
-		$senha=$_POST["senha"];
-		$query="SELECT id, nome, usuario, status, admin FROM usuarios";
-		if($usuario != null && $senha != null)
-		{
-			$query.=" WHERE usuario='".$usuario."' AND senha ='".$senha."' AND status = 1 LIMIT 1";
-		}
-
-		$response=array();
-		$result=mysqli_query($connection, $query);
-		while($row=mysqli_fetch_object($result))
-		{
-			$response[]=$row;
-		}
-
-		echo gerarToken($response[0]->id,$response[0]->admin);
-	}
 	function retrieve($id=0)
 	{
 		global $connection;
-		//global $connection;
-		$query="SELECT * FROM usuarios";
+		$query="SELECT * FROM tipos";
 		if($id != 0)
 		{
 			$query.=" WHERE id=".$id." LIMIT 1";
@@ -67,7 +44,7 @@
 	function delete($id)
 	{
 		global $connection;
-		$query="DELETE FROM usuarios WHERE id=".$id;
+		$query="DELETE FROM tipos WHERE id=".$id;
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -85,16 +62,15 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function update($id)
+	function update()
 	{
 		global $connection;
 		parse_str(file_get_contents("php://input"),$post_vars);
-		$nome=$_POST["nome"];
-		$usuario=$_POST["usuario"];
-		$senha=$_POST["senha"];
-		$status=$_POST["status"];
-		$admin=$_POST["admin"];
-		$query="INSERT INTO usuarios SET nome='{$nome}', usuario='{$usuario}', senha='{$senha}', status={$status}, admin={$admin} WHERE id=".$id;
+		$id=$post_vars['id'];
+		$nome=$post_vars['nome'];
+		$valorporhora=$post_vars["valorporhora"];
+		$valorpormes=$post_vars["valorpormes"];
+		$query="UPDATE tipos SET nome='{$nome}', valorporhora='{$valorporhora}', valorpormes='{$valorpormes}' WHERE id=".$id;
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(

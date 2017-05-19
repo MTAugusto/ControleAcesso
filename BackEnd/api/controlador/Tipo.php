@@ -1,5 +1,5 @@
 <?php
-include '../persistencia/ClienteDAO.php';
+include '../persistencia/TipoDAO.php';
 include '../persistencia/Connect.php';
 include '../negocio/Token.php';
 
@@ -19,10 +19,10 @@ include '../negocio/Token.php';
 			}
 			break;
 		case 'POST':
-			if(verificarLogin()) insert();
+			if(verificarLogin("admin")) insert();
 			break;
 		case 'PUT':
-			if(verificarLogin()) update();
+			if(verificarLogin("admin")) update();
 			break;
 		// case 'DELETE':
 		// 	// Delete Product

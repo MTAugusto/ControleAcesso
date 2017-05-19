@@ -1,6 +1,5 @@
 <?php
-
-include '../persistencia/UsuarioDAO.php';
+include '../persistencia/CaixaDiarioDAO.php';
 include '../persistencia/Connect.php';
 include '../negocio/Token.php';
 
@@ -80,101 +79,28 @@ use Lcobucci\JWT\Parser;
 			// agora sim parte normal da classe
 
 			if ($token->getClaim('admin') == 1) {
-				if(!empty($_GET["id"])){
+				if(empty($_GET["id"])){
 					$id=intval($_GET["id"]);
 					retrieve($id);
 				} else {
 					retrieve();
 				}
 			}else{
-				retrieve(getIdUser());
+				$id=intval($_GET["id"]);
+				retrieve($id);
 			}
 
 			break;
 		case 'POST':
-			// Insert Product
-			if(verificarLogin("admin")) insert();
+			if(verificarLogin()) insert();
 			break;
-		case 'PUT':
-
-			//Gambiarra para resolver problema especifico dessa classe
-			//problema de duas permissões para acesso
-
-			global $signer;
-			global $key;
-			global $site;
-
-			//Captura o token do cabeçalho
-			$headers = apache_request_headers();
-			foreach ($headers as $header => $value) {
-			    if ($header == "Authorization") $token = $value;
-			}
-
-			//Verifica se tem token no cabeçalho
-			if (!$token){
-				$response=array(
-					'status' => 0,
-					'message' =>'O token não foi enviado corretamente.'
-				);
-				header('Content-Type: application/json');
-				echo json_encode($response);
-				break;
-			}else{
-				// Cria um objeto Token para validar e instancia o validador
-				try {
-	    			$token = (new Parser())->parse((string) $token);
-				} catch (Exception $e) {
-	    			$response=array(
-						'status' => 0,
-						'message' =>'O token está no formato errado.'
-					);
-					header('Content-Type: application/json');
-					echo json_encode($response);
-					break;
-				}
-				$data = new ValidationData();
-
-				//verifica a validade do token
-				if (!$token->validate($data)) {
-					$response=array(
-						'status' => 0,
-						'message' =>'Token expirado, faça um novo login.'
-					);
-					header('Content-Type: application/json');
-					echo json_encode($response);
-					return false;
-				}
-
-				//verifica a assinatura do token
-				if (!$token->verify($signer, $key)) {
-					$response=array(
-						'status' => 0,
-						'message' =>'Token invalido.'
-					);
-					header('Content-Type: application/json');
-					echo json_encode($response);
-					break;
-				}
-			}
-
-			// agora sim parte normal da classe
-
-			if ($token->getClaim('admin') == 1) {
-				if(!empty($_GET["id"])){
-					$id=intval($_GET["id"]);
-					update($id);
-				}
-			}else{
-				update(getIdUser());
-			}
-
-			break;
+		// case 'PUT':
+		// 	if(verificarLogin()) update();
+		// 	break;
 		// case 'DELETE':
 		// 	// Delete Product
-		// 	if(verificarLogin("admin")){
-		// 		$id=intval($_GET["id"]);
-		// 		delete($id);
-		// 	}
+		// 	$id=intval($_GET["id"]);
+		// 	delete($id);
 		// 	break;
 		default:
 			// Invalid Request Method
