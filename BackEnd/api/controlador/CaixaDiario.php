@@ -15,7 +15,7 @@ use Lcobucci\JWT\Parser;
 	switch($request_method)
 	{
 		case 'GET':
-			
+
 			//Gambiarra para resolver problema especifico dessa classe
 			//problema de duas permissões para acesso
 
@@ -81,13 +81,13 @@ use Lcobucci\JWT\Parser;
 			if ($token->getClaim('admin') == 1) {
 				if(empty($_GET["id"])){
 					$id=intval($_GET["id"]);
-					retreave($id);
+					retrieve($id);
 				} else {
-					retreave();
+					retrieve();
 				}
 			}else{
 				$id=intval($_GET["id"]);
-				retreave($id);
+				retrieve($id);
 			}
 
 			break;
