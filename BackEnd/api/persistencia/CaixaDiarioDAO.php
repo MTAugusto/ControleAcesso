@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	function insert()
 	{
@@ -25,7 +25,7 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	function retreave($id=0)
+	function retrieve($id=0)
 	{
 		global $connection;
 		$query="SELECT * FROM caixadiarios";
@@ -91,4 +91,3 @@
 
 	// Close database connection
 	mysqli_close($connection);
-	
