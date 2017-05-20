@@ -1,7 +1,7 @@
 angular.module('spa')
 	.controller('clientesInserirCtrl', [ '$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
 	function($scope, $rootScope,$routeParams, $http, $location, $mdToast){
-    	$scope.name = 'Inserir novo cargo';
+    	$scope.name = 'Inserir novo cliente';
 
         $scope.cancelar = function(){
             $location.path('clientes').search({});
