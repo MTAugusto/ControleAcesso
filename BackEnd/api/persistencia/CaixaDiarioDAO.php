@@ -13,7 +13,8 @@
 
 		$date = date("Y-m-d H:i:s");
 		$dataAtual = date('Y-m-d');
-		$query="INSERT INTO caixadiarios SET abertura='{$date}', data='{$dataAtual}'";
+		$usuario = getIdUser();
+		$query="INSERT INTO caixadiarios SET abertura='{$date}', data='{$dataAtual}', usuario={$usuario}";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -27,6 +28,7 @@
 				'status' => 0,
 				'message' =>'Houve um erro ao abrir o caixa diário.'
 			);
+			header("HTTP/2.0 400 Bad Request");
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);
@@ -65,6 +67,7 @@
 				'status' => 0,
 				'message' =>'Houve um erro ao deletar.'
 			);
+			header("HTTP/2.0 400 Bad Request");
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);
@@ -74,9 +77,10 @@
 		global $connection;
 		parse_str(file_get_contents("php://input"),$post_vars);
 		$id=$post_vars['id'];
-		$fechamento = date("Y-m-d H:i:s");
 		$valortotal=$post_vars["valortotal"];
-		$query="UPDATE caixadiarios SET fechamento='{$fechamento}', valortotal='{$valortotal}' WHERE id=".$id;
+		$fechamento = date("Y-m-d H:i:s");
+		$usuario = getIdUser();
+		$query="UPDATE caixadiarios SET fechamento='{$fechamento}', valortotal='{$valortotal}' WHERE id=$id AND usuario=$usuario";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -90,6 +94,7 @@
 				'status' => 0,
 				'message' =>'Houve um erro ao atualizar.'
 			);
+			header("HTTP/2.0 400 Bad Request");
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);

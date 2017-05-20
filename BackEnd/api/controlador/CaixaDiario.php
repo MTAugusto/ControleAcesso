@@ -36,6 +36,7 @@ use Lcobucci\JWT\Parser;
 					'message' =>'O token não foi enviado corretamente.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				break;
 			}else{
@@ -48,6 +49,7 @@ use Lcobucci\JWT\Parser;
 						'message' =>'O token está no formato errado.'
 					);
 					header('Content-Type: application/json');
+					header("HTTP/2.0 400 Bad Request");
 					echo json_encode($response);
 					break;
 				}
@@ -60,6 +62,7 @@ use Lcobucci\JWT\Parser;
 						'message' =>'Token expirado, faça um novo login.'
 					);
 					header('Content-Type: application/json');
+					header("HTTP/2.0 400 Bad Request");
 					echo json_encode($response);
 					return false;
 				}
@@ -71,6 +74,7 @@ use Lcobucci\JWT\Parser;
 						'message' =>'Token invalido.'
 					);
 					header('Content-Type: application/json');
+					header("HTTP/2.0 400 Bad Request");
 					echo json_encode($response);
 					break;
 				}
@@ -94,9 +98,11 @@ use Lcobucci\JWT\Parser;
 		case 'POST':
 			if(verificarLogin()) insert();
 			break;
-		// case 'PUT':
-		// 	if(verificarLogin()) update();
-		// 	break;
+		case 'PUT':
+			if(verificarLogin()) update();
+			break;
+		case 'OPTIONS':
+			break;
 		// case 'DELETE':
 		// 	// Delete Product
 		// 	$id=intval($_GET["id"]);

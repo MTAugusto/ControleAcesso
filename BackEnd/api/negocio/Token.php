@@ -27,6 +27,7 @@ use Lcobucci\JWT\Parser;
 				'message' =>'Usuário não encontrado.'
 			);
 			header('Content-Type: application/json');
+			header("HTTP/2.0 400 Bad Request");
 			echo json_encode($response);
 			return;
 		}
@@ -39,7 +40,14 @@ use Lcobucci\JWT\Parser;
             ->sign($signer, $key) 
             ->getToken();
 
-         echo $token;
+        $response=array(
+			'status' => 1,
+			'token' => "$token"
+		);
+		header('Content-Type: application/json');
+		echo json_encode($response);
+
+//        echo $token;
 	}
 
 	function verificarToken()
@@ -57,19 +65,22 @@ use Lcobucci\JWT\Parser;
 		//Verifica se tem token no cabeçalho
 		if (!$token){
 			$response=array(
-				'status' => 0,
+				'status' => 2,
 				'message' =>'O token não foi enviado corretamente.'
 			);
+			header('Content-Type: application/json');
+			header("HTTP/2.0 400 Bad Request");
 		}else{
 			// Cria um objeto Token para validar e instancia o validador
 			try {
     			$token = (new Parser())->parse((string) $token);
 			} catch (Exception $e) {
     			$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token invalido.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 			}
 
@@ -79,10 +90,11 @@ use Lcobucci\JWT\Parser;
 			//verifica a validade do token
 			if (!$token->validate($data)) {
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token expirado, faça um novo login.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return false;
 			}
@@ -91,16 +103,17 @@ use Lcobucci\JWT\Parser;
 			if ($token->verify($signer, $key)) {
 				
 				$response=array(
-					'status' => 1,
+					'status' => 2,
 					'message' =>'Token valido.'
 				);
 			}
 			else
 			{
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token invalido.'
 				);
+				header("HTTP/2.0 400 Bad Request");
 			}
 		}
 				
@@ -123,10 +136,11 @@ use Lcobucci\JWT\Parser;
 		//Verifica se tem token no cabeçalho
 		if (!$token){
 			$response=array(
-				'status' => 0,
+				'status' => 2,
 				'message' =>'O token não foi enviado corretamente.'
 			);
 			header('Content-Type: application/json');
+			header("HTTP/2.0 400 Bad Request");
 			echo json_encode($response);
 			return false;
 		}else{
@@ -135,10 +149,11 @@ use Lcobucci\JWT\Parser;
     			$token = (new Parser())->parse((string) $token);
 			} catch (Exception $e) {
     			$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'O token está no formato errado.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return false;
 			}
@@ -147,10 +162,11 @@ use Lcobucci\JWT\Parser;
 			//verifica a validade do token
 			if (!$token->validate($data)) {
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token expirado, faça um novo login.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return false;
 			}
@@ -161,9 +177,10 @@ use Lcobucci\JWT\Parser;
 					if ($token->getClaim('admin') != 1) {
 						$response=array(
 							'status' => 0,
-							'message' =>'Esse usuário não tem as permissões necessárias para acessar esse serviço.'
+							'message' =>'Você não tem as permissões necessárias para acessar esse serviço.'
 						);
 						header('Content-Type: application/json');
+						header("HTTP/2.0 400 Bad Request");
 						echo json_encode($response);
 						return false;
 					}
@@ -172,10 +189,11 @@ use Lcobucci\JWT\Parser;
 			else
 			{
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token invalido.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return false;
 			}
@@ -197,10 +215,11 @@ use Lcobucci\JWT\Parser;
 		//Verifica se tem token no cabeçalho
 		if (!$token){
 			$response=array(
-				'status' => 0,
+				'status' => 2,
 				'message' =>'O token não foi enviado corretamente.'
 			);
 			header('Content-Type: application/json');
+			header("HTTP/2.0 400 Bad Request");
 			echo json_encode($response);
 			return 0;
 		}else{
@@ -209,10 +228,11 @@ use Lcobucci\JWT\Parser;
     			$token = (new Parser())->parse((string) $token);
 			} catch (Exception $e) {
     			$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'O token está no formato errado.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return 0;
 			}
@@ -221,10 +241,11 @@ use Lcobucci\JWT\Parser;
 			//verifica a validade do token
 			if (!$token->validate($data)) {
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token expirado, faça um novo login.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return false;
 			}
@@ -236,10 +257,11 @@ use Lcobucci\JWT\Parser;
 			else
 			{
 				$response=array(
-					'status' => 0,
+					'status' => 2,
 					'message' =>'Token invalido.'
 				);
 				header('Content-Type: application/json');
+				header("HTTP/2.0 400 Bad Request");
 				echo json_encode($response);
 				return 0;
 			}

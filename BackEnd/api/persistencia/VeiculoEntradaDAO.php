@@ -27,6 +27,7 @@
 				'status' => 0,
 				'message' =>'Houve um erro ao adicionar.'
 			);
+			header("HTTP/2.0 400 Bad Request");
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);

@@ -24,6 +24,8 @@ include '../negocio/Token.php';
 		case 'PUT':
 			if(verificarLogin("admin")) update();
 			break;
+		case 'OPTIONS':
+			break;
 		// case 'DELETE':
 		// 	// Delete Product
 		// 	$id=intval($_GET["id"]);

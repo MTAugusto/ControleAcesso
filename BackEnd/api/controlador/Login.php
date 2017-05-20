@@ -19,6 +19,8 @@ include '../negocio/Token.php';
 		case 'POST':
 			login();
 			break;
+		case 'OPTIONS':
+			break;
 		default:
 			// Invalid Request Method
 			header("HTTP/2.0 405 Method Not Allowed");

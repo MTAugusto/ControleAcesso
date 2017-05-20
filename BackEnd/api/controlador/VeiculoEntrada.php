@@ -21,6 +21,8 @@ include '../negocio/Token.php';
 		case 'POST':
 			if(verificarLogin()) insert();
 			break;
+		case 'OPTIONS':
+			break;
 		// case 'PUT':
 		// 	if(verificarLogin()) update();
 		// 	break;
