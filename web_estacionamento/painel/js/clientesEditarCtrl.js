@@ -12,9 +12,9 @@ angular.module('spa')
         $scope.consultar = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
-                $http({ 
-                        url: $rootScope.api + '/Cliente.php?id=' + $scope.parametrosDaUrl.id, 
-                        dataType: 'json', 
+                $http({
+                        url: $rootScope.api + '/Cliente.php?id=' + $scope.parametrosDaUrl.id,
+                        dataType: 'json',
                         method:'GET',
                         headers: {'Authorization': token}
                     }).success(function (response) {
@@ -24,7 +24,7 @@ angular.module('spa')
                             .content(response.message)
                             .hideDelay(3000));
                         console.log(response);
-                        if (response.status == 2) window.location = "/#/login";             
+                        if (response.status == 2) window.location = "/#/login";
                     });
 
             }else{
@@ -34,11 +34,11 @@ angular.module('spa')
         };
 
     	$scope.editar = function(){
-            var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");     
+            var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
-                $http({ 
-                        url: $rootScope.api + '/Cliente.php', 
-                        dataType: 'json', 
+                $http({
+                        url: $rootScope.api + '/Cliente.php',
+                        dataType: 'json',
                         method:'PUT',
                         headers: {'Authorization': token,'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param
@@ -48,7 +48,7 @@ angular.module('spa')
                             'cpf': $scope.cliente.cpf,
                             'telefone': $scope.cliente.telefone
                         })
-                    }).success(function (response) {                        
+                    }).success(function (response) {
                         $mdToast.show($mdToast.simple()
                             .content(response.message)
                             .hideDelay(3000));
