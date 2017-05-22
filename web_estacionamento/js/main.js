@@ -5,8 +5,7 @@
     angular.module('spa').config(function($routeProvider){
         $routeProvider
         .when('/', {
-            templateUrl: 'includes/login.html',
-            controller: 'loginCtrl'
+            templateUrl: 'includes/login-home.html'         
         })
 
         .otherwise({ redirectTo: '/'});
@@ -25,6 +24,3 @@
     });
 
 })();
-
-
-
