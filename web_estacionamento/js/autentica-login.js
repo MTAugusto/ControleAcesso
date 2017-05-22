@@ -2,7 +2,7 @@ function fnConsomeWs() {
      $.ajax({
           type: "POST",
           url: "http://localhost/ControleAcesso/BackEnd/api/controlador/Login.php",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/x-www-form-urlencoded; charset=utf-8",
           dataType: "json",
           async: true,
           data: '{Usuario:"' + document.getElementById("usuario").value + '",Senha:"' + document.getElementById("password").value + '"}',
