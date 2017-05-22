@@ -32,6 +32,18 @@
 		//global $connection;
 		$usuario=$_POST["usuario"];
 		$senha=$_POST["senha"];
+
+		if ($usuario == null || $senha == null) {
+			$response=array(
+				'status' => 0,
+				'message' =>'Usuário ou senha não foram enviados.'
+			);
+			header("HTTP/2.0 400 Bad Request");
+			header('Content-Type: application/json');
+			echo json_encode($response);
+			return;
+		}
+
 		$query="SELECT id, nome, usuario, status, admin FROM usuarios";
 		if($usuario != null && $senha != null)
 		{
