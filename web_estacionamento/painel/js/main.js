@@ -11,10 +11,6 @@
 
                //CONFIGURAÇÃO
 
-               .when('/configuration', {
-                    templateUrl: 'includes/configuration.html',
-                    controller: 'ConfigurationCtrl'
-               })
 
                //ROTAS NOVAS
                .when('/clientes', {
