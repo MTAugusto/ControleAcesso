@@ -3,9 +3,9 @@ include '../persistencia/SaidaVeiculoDAO.php';
 include '../persistencia/Connect.php';
 include '../negocio/Token.php';
 
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
+// ini_set('display_errors',1);
+// ini_set('display_startup_erros',1);
+// error_reporting(E_ALL);
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
 

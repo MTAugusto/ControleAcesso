@@ -29,7 +29,7 @@
 		}
 
 		//buscar tipo do veiculo -- $tipo[0]->id;
-		$query3="SELECT * FROM tipos WHERE veiculo='".$veiculo[0]->id."' LIMIT 1";
+		$query3="SELECT * FROM tipos WHERE id='".$veiculo[0]->tipo."' LIMIT 1";
 		$tipo=array();
 		$result=mysqli_query($connection, $query3);
 		while($row=mysqli_fetch_object($result))
@@ -47,10 +47,25 @@
 		}
 
 		//validando veiculo e entrada
-		if ($entrada[0]->id == 0 || $veiculo[0]->id == 0 || $tipo[0]->id == 0 || $mensalidade[0]->id) {
+		$error = false;
+		if ($entrada[0]->id == 0) {
+			$erro = "a entrada";
+			$error = true;
+		}elseif ($veiculo[0]->id == 0) {
+			$erro = "o veículo";
+			$error = true;
+		}elseif ($tipo[0]->id == 0) {
+			$erro = "o tipo do veículo";
+			$error = true;
+		}elseif ($mensalidade[0]->id == 0) {
+			$erro = "a mensalidade do veículo";
+			$error = true;
+		}
+
+		if ($error) {
 			$response=array(
 					'status' => 0,
-					'message' =>'Houve um erro ao buscar o veículo ou sua entrada.'
+					'message' =>"Não foi encontrado $erro."
 				);
 			header("HTTP/2.0 400 Bad Request");
 			header('Content-Type: application/json');
@@ -77,68 +92,64 @@
 				);
 				header("HTTP/2.0 400 Bad Request");
 			}
-		}elseif ($veiculo[0]->ismensal) {
-			if ($dataMensal == $mensalidade[0]->datavencimento) {
+
+
+		}elseif ($veiculo[0]->ismensal) { // se é mensal
+			if ($dataMensal == $mensalidade[0]->datavencimento) {//se for o dia de pagar a mensalidade 
 				$valorPagar = $tipo[0]->valorpormes;
 				$query6="INSERT INTO saidas_veiculos SET usuario={$usuarioAtual}, entrada_veiculo={$entrada[0]->id}, data='{$dataAtual}', valor={$valorPagar}, iscortesia=0";
-			}else{
-				$tempoGasto = ($dataAtual->diff($entrada[0]->data)->format('%H'))*60+$dataAtual->diff($entrada[0]->data)->format('%I');
-				$valorPagar = ($tipo[0]->valorporhora/60)*$tempoGasto;
+			}else{ //se não for o dia de cobrar a mensalidade
+				$valorPagar = 0;
 				$query6="INSERT INTO saidas_veiculos SET usuario={$usuarioAtual}, entrada_veiculo={$entrada[0]->id}, data='{$dataAtual}', valor={$valorPagar}, iscortesia=0";
-			}
-
-			if(mysqli_query($connection, $query6))
-			{
-				
-				//retornando a saida criada
-				$query7="SELECT * FROM saidas_veiculos WHERE usuario={$usuarioAtual}, entrada_veiculo={$entrada[0]->id}, data='{$dataAtual}', valor={$valorPagar} LIMIT 1";
-				$saida=array();
-				$result=mysqli_query($connection, $query7);
-				while($row=mysqli_fetch_object($result))
-				{
-					$saida[]=$row;
-				}
-
-				//retornando caixa aberto do usuário -- usuario, data, fechamento ==null
-				$query8="SELECT * FROM caixadiarios WHERE usuario={$usuarioAtual} AND data='{$dataMensal}' AND isfechado=0 LIMIT 1";
-				$caixa=array();
-				$result=mysqli_query($connection, $query8);
-				while($row=mysqli_fetch_object($result))
-				{
-					$caixa[]=$row;
-				}
-
-				$query9="INSERT INTO movimentacao_caixadiario SET saida_veiculo={saida[0]->id}, caixadiario={caixa[0]->id}";
-				$query10="UPDATE entradas_veiculos SET jasaiu=1 WHERE id=".$entrada[0]->id;
-				if(mysqli_query($connection, $query9 || mysqli_query($connection, $query10))
-				{
-					$response=array(
-						'status' => 1,
-						'message' => 'Saída efetuada com sucesso!',
-						'valortotal' => "$saida[0]->valor"
-					);
-				}
-				else
-				{
-					$response=array(
-						'status' => 0,
-						'message' =>'Houve um erro ao registrar a saída.'
-					);
-					header("HTTP/2.0 400 Bad Request");
-				}
-
 				
 			}
-			else
-			{
-				$response=array(
-					'status' => 0,
-					'message' =>'Houve um erro na saída.'
-				);
-				header("HTTP/2.0 400 Bad Request");
-			}
+		}else{ //se não for mensal cobra o valor das horas que ficou
+			$dataEntrada = new DateTime($entrada[0]->data);
+			$dataAgora = new DateTime();
+			$tempoGasto = ($dataAgora->diff($dataEntrada)->format('%H'))*60+$dataAgora->diff($dataEntrada)->format('%I');
+			$valorPagar = ($tipo[0]->valorporhora/60)*$tempoGasto;
+			$query6="INSERT INTO saidas_veiculos SET usuario={$usuarioAtual}, entrada_veiculo={$entrada[0]->id}, data='{$dataAtual}', valor={$valorPagar}, iscortesia=0";
 		}
 
+		if(!mysqli_query($connection, $query6))
+		{
+			$response=array(
+				'status' => 0,
+				'message' =>'Houve um erro ao gravar a saída.'
+			);
+			header("HTTP/2.0 400 Bad Request");
+		}	
+		//retornando o id da saida criada
+		$saidaId = mysqli_insert_id($connection);
+
+		//retornando caixa aberto do usuário -- usuario, data, fechamento ==null
+		$query7="SELECT * FROM caixadiarios WHERE usuario={$usuarioAtual} AND data='{$dataMensal}' AND isfechado=0 LIMIT 1";
+		$caixa=array();
+		$result=mysqli_query($connection, $query7);
+		while($row=mysqli_fetch_object($result))
+		{
+			$caixa[]=$row;
+		}
+
+		//vincula a saida ao caixa
+		$query8="INSERT INTO movimentacao_caixadiario SET saida_veiculo={$saidaId}, caixadiario={$caixa[0]->id}";
+		$query9="UPDATE entradas_veiculos SET jasaiu=1 WHERE id=".$entrada[0]->id;
+		if(mysqli_query($connection, $query8) && mysqli_query($connection, $query9))
+		{
+			$response=array(
+				'status' => 1,
+				'message' => 'Saída efetuada com sucesso!',
+				'valortotal' => "$valorPagar"
+			);
+		}
+		else
+		{
+			$response=array(
+				'status' => 0,
+				'message' =>'Houve um erro ao registrar a saída.'
+			);
+			header("HTTP/2.0 400 Bad Request");
+		}
 
 		header('Content-Type: application/json');
 		echo json_encode($response);
