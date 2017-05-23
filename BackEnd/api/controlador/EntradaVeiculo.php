@@ -1,5 +1,5 @@
 <?php
-include '../persistencia/VeiculoEntradaDAO.php';
+include '../persistencia/EntradaVeiculoDAO.php';
 include '../persistencia/Connect.php';
 include '../negocio/Token.php';
 
