@@ -14,7 +14,7 @@
 
 		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
 
-		$query="INSERT INTO entradas_veiculos SET usuario={$usuarioAtual}, veiculo='{$veiculo}', data='{$dataAtual}'";
+		$query="INSERT INTO entradas_veiculos SET usuario={$usuarioAtual}, veiculo='{$veiculo}', data='{$dataAtual}', jasaiu=0";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
