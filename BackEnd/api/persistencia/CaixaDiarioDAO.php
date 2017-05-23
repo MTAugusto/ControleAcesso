@@ -14,7 +14,7 @@
 		$date = date("Y-m-d H:i:s");
 		$dataAtual = date('Y-m-d');
 		$usuario = getIdUser();
-		$query="INSERT INTO caixadiarios SET abertura='{$date}', data='{$dataAtual}', usuario={$usuario}";
+		$query="INSERT INTO caixadiarios SET abertura='{$date}', data='{$dataAtual}', usuario={$usuario}, isfechado=0";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
@@ -80,7 +80,7 @@
 		$valortotal=$post_vars["valortotal"];
 		$fechamento = date("Y-m-d H:i:s");
 		$usuario = getIdUser();
-		$query="UPDATE caixadiarios SET fechamento='{$fechamento}', valortotal='{$valortotal}' WHERE id=$id AND usuario=$usuario";
+		$query="UPDATE caixadiarios SET fechamento='{$fechamento}', valortotal='{$valortotal}', isfechado=1 WHERE id=$id AND usuario=$usuario";
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
