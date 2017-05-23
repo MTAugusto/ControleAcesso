@@ -18,7 +18,7 @@
       <input type="text" ng-model="filtro">
     </md-input-container>
      <!--- EDITAR NOME DO ARRAY ABAIXO-->
-    <div ng-hide="true">{{(itensFiltrados = (Usuarios | filter: filtro))}}</div>
+    <div ng-hide="true">{{(itensFiltrados = (usuarios | filter: filtro))}}</div>
   </md-card>
   </div>
 
@@ -30,23 +30,21 @@
       'table-row-id-key': 'id',
       'column-keys': [
         'nome',
-        'cpf',
-        'telefone'
+        'status'
       ]
     }">
       <mdt-header-row>
         <!-- COLOCAR UM MD-COLUMN PRA CADA COLUNA EXIBIDA ACIMA NO COLUMN-KEYS-->
         <mdt-column align-rule="left">Nome</mdt-column>
-        <mdt-column align-rule="right">CPF</mdt-column>
-        <mdt-column align-rule="right">Telefone</mdt-column>
+        <mdt-column align-rule="right">Usuario</mdt-column>
       </mdt-header-row>
       <mdt-custom-cell column-key="nome"> <!-- COLOCAR O COLUMN-KEY CLICAVEL-->
         <!-- EDITAR CAMINHO DO LINK ABAIXO -->
-        <a ng-href="#/usuarios/editar?id={{clientScope.getUsuariosPorId(rowId).id}}">{{clientScope.getUsuariosPorId(rowId).nome}}</a>
+        <a ng-href="#/usuarios/editar?id={{clientScope.getusuariosPorId(rowId).id}}">{{clientScope.getusuariosPorId(rowId).nome}}</a>
       </mdt-custom-cell>
     </mdt-table>
 
-    <md-button class="md-fab md-primary" ng-href="#/Usuarios/inserir" aria-label="Adicionar"><!-- EDITAR CAMINHO ACIMA -->
+    <md-button class="md-fab md-primary" ng-href="#/usuarios/inserir" aria-label="Adicionar"><!-- EDITAR CAMINHO ACIMA -->
       <md-icon md-svg-src="img/icons/add.svg"></md-icon>
     </md-button>
 	</div>

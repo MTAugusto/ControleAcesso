@@ -1,5 +1,5 @@
 angular.module('spa')
-	.controller('UsuariosCtrl', ['$scope', '$rootScope', '$mdToast', '$http', '$location',
+	.controller('usuariosCtrl', ['$scope', '$rootScope', '$mdToast', '$http', '$location',
 	function($scope, $rootScope, $mdToast, $http, location){
 		$scope.name = 'Administração de Usuarios';
 
@@ -7,11 +7,11 @@ angular.module('spa')
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/Usuarios.php',
+                        url: $rootScope.api + '/Usuario.php',
                         method:'GET',
                         headers: {'Authorization': token},
                     }).success(function (response) {
-                        $scope.Usuarios = response;
+                        $scope.usuarios = response;
                         console.log(response);
                     }).error(function (response) {
                         $mdToast.show($mdToast.simple()
@@ -27,7 +27,7 @@ angular.module('spa')
         };
 
       	$scope.getUsuariosPorId = function(id){
-        	return _.find($scope.Usuarios, function(item){
+        	return _.find($scope.usuarios, function(item){
             	return item.id === id;
         	})
         };
