@@ -4,7 +4,7 @@ angular.module('spa')
     	$scope.name = 'Inserir novo usuario';
 
         $scope.cancelar = function(){
-            $location.path('clientes').search({});
+            $location.path('usuario').search({});
         };
 
 
@@ -12,7 +12,7 @@ angular.module('spa')
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/Cliente.php',
+                        url: $rootScope.api + '/usuario.php',
                         dataType: 'json',
                         method:'POST',
                         headers: {'Authorization': token,'Content-Type': 'application/x-www-form-urlencoded'},
