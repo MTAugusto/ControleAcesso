@@ -13,3 +13,6 @@ RewriteRule ^usuario/([0-9]+)/?$ controlador/Usuario.php?id=$1 [NC,L]
 
 RewriteRule ^veiculo/?$ controlador/Veiculo.php [NC,L]
 RewriteRule ^veiculo/([0-9]+)/?$ controlador/Veiculo.php?id=$1 [NC,L]
+
+RewriteRule ^entrada-veiculo/?$ controlador/EntradaVeiculo.php [NC,L]
+RewriteRule ^entrada-veiculo/([0-9]+)/?$ controlador/EntradaVeiculo.php?id=$1 [NC,L]
