@@ -1,0 +1,15 @@
+RewriteEngine On
+
+RewriteRule ^login/?$ controlador/Login.php [NC,L]
+
+RewriteRule ^cliente/?$ controlador/Cliente.php [NC,L]
+RewriteRule ^cliente/([0-9]+)/?$ controlador/Cliente.php?id=$1 [NC,L]
+
+RewriteRule ^tipo/?$ controlador/Tipo.php [NC,L]
+RewriteRule ^tipo/([0-9]+)/?$ controlador/Tipo.php?id=$1 [NC,L]
+
+RewriteRule ^usuario/?$ controlador/Usuario.php [NC,L]
+RewriteRule ^usuario/([0-9]+)/?$ controlador/Usuario.php?id=$1 [NC,L]
+
+RewriteRule ^veiculo/?$ controlador/Veiculo.php [NC,L]
+RewriteRule ^veiculo/([0-9]+)/?$ controlador/Veiculo.php?id=$1 [NC,L]
