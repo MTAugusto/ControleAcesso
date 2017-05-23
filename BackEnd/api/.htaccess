@@ -16,3 +16,6 @@ RewriteRule ^veiculo/([0-9]+)/?$ controlador/Veiculo.php?id=$1 [NC,L]
 
 RewriteRule ^entrada-veiculo/?$ controlador/EntradaVeiculo.php [NC,L]
 RewriteRule ^entrada-veiculo/([0-9]+)/?$ controlador/EntradaVeiculo.php?id=$1 [NC,L]
+
+RewriteRule ^saida-veiculo/?$ controlador/SaidaVeiculo.php [NC,L]
+RewriteRule ^saida-veiculo/([0-9]+)/?$ controlador/SaidaVeiculo.php?id=$1 [NC,L]
