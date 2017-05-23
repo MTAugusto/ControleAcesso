@@ -7,7 +7,7 @@ angular.module('spa')
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/Usuario.php',
+                        url: $rootScope.api + '/usuario',
                         method:'GET',
                         headers: {'Authorization': token},
                     }).success(function (response) {

@@ -37,7 +37,7 @@ angular.module('spa')
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/Cliente.php',
+                        url: $rootScope.api + '/usuario.php',
                         dataType: 'json',
                         method:'PUT',
                         headers: {'Authorization': token,'Content-Type': 'application/x-www-form-urlencoded'},

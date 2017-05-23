@@ -18,15 +18,15 @@
           <md-input-container class="md-block">
             <label>Nome</label>
 
-            <input required ng-model="Usuarios.nome" type="text">
+            <input required ng-model="usuarios.nome" type="text">
           </md-input-container>
             <md-input-container class="md-block">
               <label>CPF</label>
-              <input required ng-model="Usuarios.cpf" ng-pattern="/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/" ui-br-cpf-mask>
+              <input required ng-model="usuarios.cpf" ng-pattern="/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/" ui-br-cpf-mask>
             </md-input-container>
           <md-input-container class="md-block">
             <label>Telefone</label>
-            <input required ng-model="Usuarios.telefone" type="text">
+            <input required ng-model="usuarios.telefone" type="text">
           </md-input-container>
 
 					<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>

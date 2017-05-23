@@ -26,6 +26,19 @@
                     controller: 'clientesEditarCtrl'
                })
 
+               .when('/usuarios', {
+                    templateUrl: 'includes/usuarios.html',
+                    controller: 'usuariosCtrl'
+               })
+               .when('/usuarios/inserir', {
+                    templateUrl: 'includes/usuariosInserir.html',
+                    controller: 'usuariosInserirCtrl'
+               })
+               .when('/usuario/editar', {
+                    templateUrl: 'includes/usuariosEditar.html',
+                    controller: 'usuarioEditarCtrl'
+               })
+
                .otherwise({
                     redirectTo: '/'
                });
