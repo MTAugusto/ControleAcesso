@@ -7,7 +7,7 @@
 		$veiculo=$_POST["veiculo"];
 		$dataAtual=date("Y-m-d H:i:s", time());
 		$usuarioAtual = getIdUser();
-		
+
 		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
 
 		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
