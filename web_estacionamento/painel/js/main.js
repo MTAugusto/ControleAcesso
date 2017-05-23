@@ -1,70 +1,71 @@
-(function(){
+(function() {
 
-    let main = angular.module('spa', ['iconesSVG','ngRoute','ui.utils.masks', 'mdDataTable', 'ngMdIcons', 'ngSanitize']);
+     let main = angular.module('spa', ['iconesSVG', 'ngRoute', 'ui.utils.masks', 'mdDataTable', 'ngMdIcons', 'ngSanitize', 'angular-loading-bar', 'ngAnimate']);
 
-    angular.module('spa').config(function($routeProvider){
-        $routeProvider
-        .when('/', {
-            templateUrl: 'includes/home.html',
-            controller: 'HomeCtrl'
-        })
-        
-        //CONFIGURAÇÃO
+     angular.module('spa').config(function($routeProvider) {
+          $routeProvider
+               .when('/', {
+                    templateUrl: 'includes/home.html',
+                    controller: 'HomeCtrl'
+               })
 
-        .when('/configuration', {
-            templateUrl: 'includes/configuration.html',
-            controller: 'ConfigurationCtrl'
-        })
+               //CONFIGURAÇÃO
 
-        //ROTAS NOVAS
-        .when('/clientes', {
-            templateUrl: 'includes/clientes.html',
-            controller: 'clientesCtrl'
-        })
-        .when('/clientes/inserir', {
-            templateUrl: 'includes/clientesInserir.html',
-            controller: 'clientesInserirCtrl'
-        })
-        .when('/clientes/editar', {
-            templateUrl: 'includes/clientesEditar.html',
-            controller: 'clientesEditarCtrl'
-        })
+               .when('/configuration', {
+                    templateUrl: 'includes/configuration.html',
+                    controller: 'ConfigurationCtrl'
+               })
 
-        .otherwise({ redirectTo: '/'});
-    });
+               //ROTAS NOVAS
+               .when('/clientes', {
+                    templateUrl: 'includes/clientes.html',
+                    controller: 'clientesCtrl'
+               })
+               .when('/clientes/inserir', {
+                    templateUrl: 'includes/clientesInserir.html',
+                    controller: 'clientesInserirCtrl'
+               })
+               .when('/clientes/editar', {
+                    templateUrl: 'includes/clientesEditar.html',
+                    controller: 'clientesEditarCtrl'
+               })
 
-    main.controller('mainCtrl', function($rootScope, $scope, $http) {
+               .otherwise({
+                    redirectTo: '/'
+               });
+     });
 
-        $rootScope.api = "http://localhost/ControleAcesso/BackEnd/api/controlador";
-        //$rootScope.api = "http://montanheiro.me/api/controlador";
+     main.controller('mainCtrl', function($rootScope, $scope, $http) {
 
-        $scope.verificarLogin = function(){
-            var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");     
-            if(token) {
-                $http({ 
-                    url: $rootScope.api + '/Login.php', 
-                    dataType: 'json', 
-                    method:'GET',
-                    headers: {'Authorization': token},
-                }).success(function (response) {
-                    console.log("Usuário já tem token OK");
-                }).error(function (response) {
-                    console.log("Token do usuário é inválido");  
-                    console.log(response);
-                    window.location = "/#/login";            
-                });
-            }    
-        };
+          $rootScope.api = "http://localhost/ControleAcesso/BackEnd/api";
+          //$rootScope.api = "http://montanheiro.me/api/controlador";
 
-    });
+          $scope.verificarLogin = function() {
+               var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
+               if (token) {
+                    $http({
+                         url: $rootScope.api + '/login',
+                         dataType: 'json',
+                         method: 'GET',
+                         headers: {
+                              'Authorization': token
+                         },
+                    }).success(function(response) {
+                         console.log("Usuário já tem token OK");    
+                    }).error(function(response) {
+                         console.log("Token do usuário é inválido");
+                         console.log(response);
+                         window.location = "/#/login";
+                    });
+               }
+          };
 
-    main.config(function($mdThemingProvider) {
-      $mdThemingProvider.theme('default')
-        .primaryPalette('indigo')
-        .accentPalette('red');
-    });    
+     });
+
+     main.config(function($mdThemingProvider) {
+          $mdThemingProvider.theme('default')
+               .primaryPalette('indigo')
+               .accentPalette('red');
+     });
 
 })();
-
-
-
