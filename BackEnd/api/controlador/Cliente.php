@@ -5,6 +5,10 @@ include '../negocio/Token.php';
 
 	$request_method=$_SERVER["REQUEST_METHOD"];
 
+	// ini_set('display_errors',1);
+	// ini_set('display_startup_erros',1);
+	// error_reporting(E_ALL);
+
 	switch($request_method)
 	{
 		case 'GET':
