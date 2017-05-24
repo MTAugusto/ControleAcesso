@@ -19,14 +19,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'message' =>'Adicionado com sucesso.'
+				'message' =>'Entrada efetuada com sucesso.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'message' =>'Houve um erro ao adicionar.'
+				'message' =>'Houve um erro ao efetuar a entrada.'
 			);
 			header("HTTP/2.0 400 Bad Request");
 		}
