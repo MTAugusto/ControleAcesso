@@ -63,7 +63,7 @@
 	{
 		global $connection;
 		//global $connection;
-		$query="SELECT * FROM usuarios";
+		$query="SELECT id, nome, usuario, status, admin FROM usuarios";
 		if($id != 0)
 		{
 			$query.=" WHERE id=".$id." LIMIT 1";
