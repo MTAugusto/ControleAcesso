@@ -7,7 +7,7 @@ angular.module('spa')
             $location.path('usuario').search({});
         };
 
-
+				
     	$scope.inserir = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
