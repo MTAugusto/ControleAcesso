@@ -2,6 +2,8 @@ RewriteEngine On
 
 RewriteRule ^login/?$ controlador/Login.php [NC,L]
 
+RewriteRule ^caixadiario/?$ controlador/CaixaDiario.php [NC,L]
+
 RewriteRule ^cliente/?$ controlador/Cliente.php [NC,L]
 RewriteRule ^cliente/([0-9]+)/?$ controlador/Cliente.php?id=$1 [NC,L]
 
