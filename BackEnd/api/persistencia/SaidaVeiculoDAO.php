@@ -91,6 +91,9 @@
 					'message' =>'Houve um erro na saída.'
 				);
 				header("HTTP/2.0 400 Bad Request");
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return;
 			}
 
 
@@ -118,6 +121,9 @@
 				'message' =>'Houve um erro ao gravar a saída.'
 			);
 			header("HTTP/2.0 400 Bad Request");
+			header('Content-Type: application/json');
+			echo json_encode($response);
+			return;
 		}	
 		//retornando o id da saida criada
 		$saidaId = mysqli_insert_id($connection);
