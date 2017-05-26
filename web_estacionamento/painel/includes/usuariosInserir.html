@@ -37,8 +37,13 @@
 					</div>
 					</md-input-container>
 					<md-input-container class="md-block">
-						<label>Admin</label>
-						<input required ng-model="usuarios.admin" type="text">
+						<div ng-app="myApp" ng-controller="usuariosInserirCtrl">
+						<p>Admin:</p>
+						<select ng-model="usuarios.admin">
+							<option ng-repeat="administracao" value="{{x.model}}">{{x.model}}</option>
+						</select>
+						<h1>Selecionado: {{usuario.admin}}</h1>
+					</div>
 					</md-input-container>
 
 					<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>

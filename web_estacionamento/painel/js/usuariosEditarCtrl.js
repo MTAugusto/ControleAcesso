@@ -9,6 +9,14 @@ angular.module('spa')
             $location.path('usuarios').search({});
         };
 
+				var app = angular.module('myApp', []);
+				app.controller('usuariosInserirCtrl', function($scope) {
+					$scope.cars = [
+						{model : "1"},
+						{model : "2"},
+					];
+				});
+
         $scope.consultar = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
