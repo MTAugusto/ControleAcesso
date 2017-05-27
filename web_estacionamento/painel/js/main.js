@@ -52,6 +52,19 @@
                     controller: 'tiposEditarCtrl'
                })
 
+               .when('/veiculos', {
+                    templateUrl: 'includes/veiculos.html',
+                    controller: 'veiculosCtrl'
+               })
+               .when('/veiculos/inserir', {
+                    templateUrl: 'includes/veiculosInserir.html',
+                    controller: 'veiculosInserirCtrl'
+               })
+               .when('/veiculos/editar', {
+                    templateUrl: 'includes/veiculosEditar.html',
+                    controller: 'veiculosEditarCtrl'
+               })
+
                .otherwise({
                     redirectTo: '/'
                });

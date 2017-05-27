@@ -21,6 +21,11 @@
                    name: 'Tipos',
                    link: '#/tipos',
                    icon: './img/ic_playlist_add_black_24px.svg'
+              },
+              {
+                   name: 'Veículos',
+                   link: '#/veiculos',
+                   icon: './img/ic_playlist_add_black_24px.svg'
               }
 
 
