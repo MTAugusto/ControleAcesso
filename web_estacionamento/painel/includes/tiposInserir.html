@@ -21,11 +21,11 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Valor por hora</label>
-                        <input required ng-model="tipos.valorporhora" ng-pattern="/^([1-9]{1}[\d]{0,2}(\.[\d]{3})*(\,[\d]{0,2})?|[1-9]{1}[\d]{0,}(\,[\d]{0,2})?|0(\,[\d]{0,2})?|(\,[\d]{1,2})?)$/" ui-money-mask="2" currency-symbol="R$">
+                        <input required ng-model="tipos.valorporhora" ui-money-mask="2" currency-symbol="R$">
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Valor por mes</label>
-                        <input required ng-model="tipos.valorpormes" ng-pattern="/^([1-9]{1}[\d]{0,2}(\.[\d]{3})*(\,[\d]{0,2})?|[1-9]{1}[\d]{0,}(\,[\d]{0,2})?|0(\,[\d]{0,2})?|(\,[\d]{1,2})?)$/" ui-money-mask="2" currency-symbol="R$">
+                        <input required ng-model="tipos.valorpormes" ui-money-mask="2" currency-symbol="R$">
                     </md-input-container>
 
                     <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>

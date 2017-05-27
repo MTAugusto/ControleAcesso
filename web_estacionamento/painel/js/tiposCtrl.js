@@ -3,17 +3,17 @@ angular.module('spa')
           function($scope, $rootScope, $mdToast, $http, location) {
                $scope.name = 'Administração de Tipos de Veiculos';
 
-               $scope.consultarClientes = function() {
+               $scope.consultarTipos = function() {
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
                     if (token) {
                          $http({
-                              url: $rootScope.api + '/tipos',
+                              url: $rootScope.api + '/tipo',
                               method: 'GET',
                               headers: {
                                    'Authorization': token
                               },
                          }).success(function(response) {
-                              $scope.clientes = response;
+                              $scope.tipos = response;
                               console.log(response);
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
@@ -28,8 +28,8 @@ angular.module('spa')
                     }
                };
 
-               $scope.getClientesPorId = function(id) {
-                    return _.find($scope.clientes, function(item) {
+               $scope.gettiposPorId = function(id) {
+                    return _.find($scope.tipos, function(item) {
                          return item.id === id;
                     })
                };

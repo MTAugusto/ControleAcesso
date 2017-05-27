@@ -14,7 +14,7 @@ angular.module('spa')
                     if (token) {
                          $scope.isLoad = true;
                          $http({
-                              url: $rootScope.api + '/tipos?id=' + $scope.parametrosDaUrl.id,
+                              url: $rootScope.api + '/tipo?id=' + $scope.parametrosDaUrl.id,
                               dataType: 'json',
                               method: 'GET',
                               headers: {
@@ -41,7 +41,7 @@ angular.module('spa')
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
                     if (token) {
                          $http({
-                              url: $rootScope.api + '/tipos',
+                              url: $rootScope.api + '/tipo',
                               dataType: 'json',
                               method: 'PUT',
                               headers: {
@@ -49,16 +49,16 @@ angular.module('spa')
                                    'Content-Type': 'application/x-www-form-urlencoded'
                               },
                               data: $.param({
-                                   'id': $scope.cliente.id,
-                                   'nome': $scope.cliente.nome,
-                                   'cpf': $scope.cliente.cpf,
-                                   'telefone': $scope.cliente.telefone
+                                   'id': $scope.tipos.id,
+                                   'nome': $scope.tipos.nome,
+                                   'valorporhora': $scope.tipos.valorporhora,
+                                   'valorpormes': $scope.tipos.valorpormes
                               })
                          }).success(function(response) {
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
                                    .hideDelay(3000));
-                              $location.path('/clientes').search({});
+                              $location.path('/tipos').search({});
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
