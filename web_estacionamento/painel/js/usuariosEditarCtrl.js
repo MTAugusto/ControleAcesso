@@ -1,27 +1,29 @@
 angular.module('spa')
 	.controller('usuariosEditarCtrl', [ '$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
 	function($scope, $rootScope,$routeParams, $http, $location, $mdToast){
-    	$scope.name = 'Editar usuario';
+    	$scope.name = 'Usuários > Editar usuário';
 
         $scope.parametrosDaUrl = $location.search();
+
+        $scope.statusList = [
+            {status: 0, value: "Inativo"},
+            {status: 1, value: "Ativo"}
+        ];
+
+        $scope.adminList = [
+            {admin: 0, value: "Usuário comum"},
+            {admin: 1, value: "Administrador"}
+        ];
 
         $scope.cancelar = function(){
             $location.path('usuarios').search({});
         };
 
-				var app = angular.module('myApp', []);
-				app.controller('usuariosInserirCtrl', function($scope) {
-					$scope.cars = [
-						{model : "1"},
-						{model : "2"},
-					];
-				});
-
         $scope.consultar = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/usuario.php?id=' + $scope.parametrosDaUrl.id,
+                        url: $rootScope.api + '/usuario?id=' + $scope.parametrosDaUrl.id,
                         dataType: 'json',
                         method:'GET',
                         headers: {'Authorization': token}
@@ -45,16 +47,16 @@ angular.module('spa')
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/usuario.php',
+                        url: $rootScope.api + '/usuario/' + $scope.usuario.id,
                         dataType: 'json',
                         method:'PUT',
                         headers: {'Authorization': token,'Content-Type': 'application/x-www-form-urlencoded'},
-                        data: $.param
-                        ({
+                        data: $.param({
                             'id': $scope.usuario.id,
                             'nome': $scope.usuario.nome,
-                            'cpf': $scope.usuario.cpf,
-                            'telefone': $scope.usuario.telefone
+                            'usuario': $scope.usuario.usuario,
+                            'status': $scope.usuario.status,
+                            'admin': $scope.usuario.admin
                         })
                     }).success(function (response) {
                         $mdToast.show($mdToast.simple()

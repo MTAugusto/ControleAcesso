@@ -1,33 +1,37 @@
 angular.module('spa')
 	.controller('usuariosInserirCtrl', [ '$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
 	function($scope, $rootScope,$routeParams, $http, $location, $mdToast){
-    	$scope.name = 'Inserir novo usuario';
+    	$scope.name = 'Usuário > Inserir novo usuario';
+
+        $scope.statusList = [
+            {status: 0, value: "Inativo"},
+            {status: 1, value: "Ativo"}
+        ];
+
+        $scope.adminList = [
+            {admin: 0, value: "Usuário comum"},
+            {admin: 1, value: "Administrador"}
+        ];
 
         $scope.cancelar = function(){
-            $location.path('usuario').search({});
+            $location.path('usuarios').search({});
         };
-
-				var app = angular.module('myApp', []);
-				app.controller('usuariosInserirCtrl', function($scope) {
-					$scope.cars = [
-						{model : "1"},
-						{model : "2"},
-					];
-				});
 
     	$scope.inserir = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
             if(token) {
                 $http({
-                        url: $rootScope.api + '/usuario.php',
+                        url: $rootScope.api + '/usuario',
                         dataType: 'json',
                         method:'POST',
                         headers: {'Authorization': token,'Content-Type': 'application/x-www-form-urlencoded'},
                         data: $.param
                         ({
                             'nome': $scope.usuario.nome,
-                            'cpf': $scope.usuario.cpf,
-                            'telefone': $scope.usuario.telefone
+                            'usuario': $scope.usuario.usuario,
+                            'senha': $scope.usuario.senha,
+                            'status': $scope.usuario.status,
+                            'admin': $scope.usuario.admin
                         })
                     }).success(function (response) {
                         $mdToast.show($mdToast.simple()

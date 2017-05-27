@@ -14,37 +14,35 @@
     	<md-card>
      		<md-card-content>
 				<form name="form" ng-submit="inserir()">
-          <span>Dados</span>
-          <md-input-container class="md-block">
-            <label>Nome</label>
-            <input required ng-model="usuarios.nome" type="text">
-          </md-input-container>
+          			<span>Dados Gerais</span>
 					<md-input-container class="md-block">
-						<label>Usuario</label>
-						<input required ng-model="usuarios.usuario" type="text">
+						<label>Nome</label>
+						<input required ng-model="usuario.nome" type="text">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Usuário</label>
+						<input required ng-model="usuario.usuario" type="text">
 					</md-input-container>
 					<md-input-container class="md-block">
 						<label>Senha</label>
-						<input required ng-model="usuarios.senha" type="password">
+						<input required ng-model="usuario.senha" type="password">
 					</md-input-container>
-					<md-input-container class="md-block">
-						<div ng-app="myApp" ng-controller="usuariosInserirCtrl">
-						<p>Status:</p>
-						<select ng-model="usuarios.status">
-							<option ng-repeat="status do usuario" value="{{x.model}}">{{x.model}}</option>
-						</select>
-						<h1>Selecionado: {{usuario.status}}</h1>
-					</div>
-					</md-input-container>
-					<md-input-container class="md-block">
-						<div ng-app="myApp" ng-controller="usuariosInserirCtrl">
-						<p>Admin:</p>
-						<select ng-model="usuarios.admin">
-							<option ng-repeat="administracao" value="{{x.model}}">{{x.model}}</option>
-						</select>
-						<h1>Selecionado: {{usuario.admin}}</h1>
-					</div>
-					</md-input-container>
+					<div layout="row">
+					<p class="descSelect">Status: </p>
+		            <md-input-container class="md-block">
+		                <md-select  ng-model="usuario.status" placeholder="Selecione um status" required>
+		                  <md-option value="{{statuss.status}}" ng-repeat="statuss in statusList">{{statuss.value}}</md-option>
+		                </md-select>
+		              	</md-input-container>
+		          	</div>
+		          	<div layout="row">
+		          	<p class="descSelect">Tipo de usuário: </p>
+		            <md-input-container class="md-block">
+		                <md-select  ng-model="usuario.admin" placeholder="Permissão do usuário" required>
+		                  <md-option value="{{admins.admin}}" ng-repeat="admins in adminList">{{admins.value}}</md-option>
+		                </md-select>
+		              	</md-input-container>
+		          	</div>
 
 					<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
           <md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
