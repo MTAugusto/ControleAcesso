@@ -179,3 +179,8 @@ md-input-container{
 .right{
 	float: right;
 }
+
+/*// Alterações na cor do loadbar*/
+#loading-bar .bar {
+  background: #000 !important;  
+}
