@@ -18,17 +18,16 @@
                     <span>Dados Gerais</span>
                     <md-input-container class="md-block">
                         <label>Nome</label>
-                        <input required ng-model="cliente.nome" type="text">
+                        <input required ng-model="tipos.nome" type="text">
                     </md-input-container>
                     <md-input-container class="md-block">
-                        <label>CPF</label>
-                        <input required ng-model="cliente.cpf" ng-pattern="/([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/" ui-br-cpf-mask>
+                        <label>Valor por hora</label>
+                        <input required ng-model="tipos.valorporhora" ui-money-mask="2" currency-symbol="R$">
                     </md-input-container>
                     <md-input-container class="md-block">
-                        <label>Telefone</label>
-                        <input required ng-model="cliente.telefone" ng-pattern="/^\(?[0]?[1-9]{2}\)? ?[9]?[0-9]{4}\-?[0-9]{4}$/" ui-br-phone-number>
+                        <label>Valor por mes</label>
+                        <input required ng-model="tipos.valorpormes" ui-money-mask="2" currency-symbol="R$">
                     </md-input-container>
-
                     <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
                     <md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
                 </form>

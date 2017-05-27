@@ -59,7 +59,7 @@
 
      main.controller('mainCtrl', function($rootScope, $scope, $http) {
 
-          $rootScope.api = "http://localhost/ControleAcesso/BackEnd/api";
+          $rootScope.api = "http://192.168.0.104/ControleAcesso/BackEnd/api";
           //$rootScope.api = "http://montanheiro.me/api/controlador";
 
           $scope.verificarLogin = function() {

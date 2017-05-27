@@ -21,7 +21,7 @@ angular.module('spa')
                                    'Authorization': token
                               }
                          }).success(function(response) {
-                              $scope.cliente = response[0];
+                              $scope.tipos = response[0];
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
