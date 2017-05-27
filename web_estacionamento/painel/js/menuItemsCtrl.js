@@ -25,7 +25,7 @@
               {
                    name: 'Veículos',
                    link: '#/veiculos',
-                   icon: './img/ic_playlist_add_black_24px.svg'
+                   icon: './img/ic_directions_car_black_24px.svg'
               }
 
 
