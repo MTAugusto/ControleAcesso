@@ -34,9 +34,22 @@
                     templateUrl: 'includes/usuariosInserir.html',
                     controller: 'usuariosInserirCtrl'
                })
-               .when('/usuario/editar', {
+               .when('/usuarios/editar', {
                     templateUrl: 'includes/usuariosEditar.html',
-                    controller: 'usuarioEditarCtrl'
+                    controller: 'usuariosEditarCtrl'
+               })
+
+               .when('/tipos', {
+                    templateUrl: 'includes/tipos.html',
+                    controller: 'tiposCtrl'
+               })
+               .when('/tipos/inserir', {
+                    templateUrl: 'includes/tiposInserir.html',
+                    controller: 'tiposInserirCtrl'
+               })
+               .when('/tipos/editar', {
+                    templateUrl: 'includes/tiposEditar.html',
+                    controller: 'tiposEditarCtrl'
                })
 
                .otherwise({
