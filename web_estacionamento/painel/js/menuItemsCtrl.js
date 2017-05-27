@@ -7,7 +7,7 @@
               },
               //{name:'Administração', link:'#/administracao', icon:'vendas'},
               {
-                   name: 'Usuarios',
+                   name: 'Usuários',
                    link: '#/usuarios',
                    icon: './img/ic_person_add_black_24px.svg'
 
