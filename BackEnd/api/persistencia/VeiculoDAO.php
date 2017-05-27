@@ -71,10 +71,10 @@
 	function retrieve($id=0)
 	{
 		global $connection;
-		$query="SELECT * FROM veiculos";
+		$query="SELECT v.id, v.placa,v.modelo,v.cor,v.ismensal,v.tipo,t.nome as tiponome,cv.cliente,c.nome as clientenome from veiculos v join  clientes_veiculos cv on v.id = cv.veiculo join clientes c on cv.cliente = c.id join tipos t on v.tipo = t.id";
 		if($id != 0)
 		{
-			$query.=" WHERE id=".$id." LIMIT 1";
+			$query.=" WHERE v.id=".$id." LIMIT 1";
 		}
 		$response=array();
 		$result=mysqli_query($connection, $query);
@@ -88,7 +88,7 @@
 	function retrievePlaca($placa)
 	{
 		global $connection;
-		$query="SELECT * FROM veiculos WHERE placa='".$placa."' LIMIT 1";
+		$query="SELECT v.id, v.placa,v.modelo,v.cor,v.ismensal,v.tipo,t.nome as tiponome,cv.cliente,c.nome as clientenome from veiculos v join  clientes_veiculos cv on v.id = cv.veiculo join clientes c on cv.cliente = c.id join tipos t on v.tipo = t.id WHERE v.placa='".$placa."' LIMIT 1";
 
 		$response=array();
 		$result=mysqli_query($connection, $query);
