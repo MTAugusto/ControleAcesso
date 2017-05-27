@@ -1,7 +1,7 @@
 angular.module('spa')
      .controller('clientesEditarCtrl', ['$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
           function($scope, $rootScope, $routeParams, $http, $location, $mdToast) {
-               $scope.name = 'Editar cliente';
+               $scope.name = 'Clientes > Editar cliente';
 
                $scope.parametrosDaUrl = $location.search();
 
