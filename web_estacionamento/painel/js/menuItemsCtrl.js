@@ -16,6 +16,11 @@
                    name: 'Clientes',
                    link: '#/clientes',
                    icon: './img/ic_group_add_black_24px.svg'
+              },
+              {
+                   name: 'Tipos',
+                   link: '#/tipos',
+                   icon: './img/ic_playlist_add_black_24px.svg'
               }
 
 
