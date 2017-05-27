@@ -22,6 +22,17 @@ md-sidenav{
 	position: fixed !important;
 }
 
+md-select{
+	padding: 2px 2px 2px !important;
+}
+
+/*Cima - direita - baixo - esquerdo*/
+.descSelect{
+	margin: 0px;
+	padding-top: 18px;
+	color: #808080;
+}
+
 md-toolbar{
 	position: fixed;
 	margin-top: 0;
