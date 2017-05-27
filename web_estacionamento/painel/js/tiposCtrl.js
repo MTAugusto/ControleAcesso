@@ -28,7 +28,7 @@ angular.module('spa')
                     }
                };
 
-               $scope.gettiposPorId = function(id) {
+               $scope.getTiposPorId = function(id) {
                     return _.find($scope.tipos, function(item) {
                          return item.id === id;
                     })
