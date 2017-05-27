@@ -14,7 +14,6 @@ angular.module('spa')
                               },
                          }).success(function(response) {
                               $scope.tipos = response;
-                              console.log(response);
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
