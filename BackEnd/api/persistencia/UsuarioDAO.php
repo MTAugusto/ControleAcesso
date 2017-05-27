@@ -103,12 +103,11 @@
 	{
 		global $connection;
 		parse_str(file_get_contents("php://input"),$post_vars);
-		$nome=$_POST["nome"];
-		$usuario=$_POST["usuario"];
-		$senha=$_POST["senha"];
-		$status=$_POST["status"];
-		$admin=$_POST["admin"];
-		$query="INSERT INTO usuarios SET nome='{$nome}', usuario='{$usuario}', senha='{$senha}', status={$status}, admin={$admin} WHERE id=".$id;
+		$nome=$post_vars["nome"];
+		$usuario=$post_vars["usuario"];
+		$status=$post_vars["status"];
+		$admin=$post_vars["admin"];
+		$query="UPDATE usuarios SET nome='{$nome}', usuario='{$usuario}', status={$status}, admin={$admin} WHERE id=".$id;
 		if(mysqli_query($connection, $query))
 		{
 			$response=array(
