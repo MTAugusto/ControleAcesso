@@ -163,14 +163,11 @@
 	function retrieve($id=0)
 	{
 
-		//mudar reatrieve para admin retornar todos
-
-
 		global $connection;
-		$query="SELECT * FROM entradas_veiculos";
+		$query="SELECT sv.id, sv.data as datasaida, ev.data as dataentrada, sv.valor, sv.iscortesia, v.placa, t.nome as tipo from saidas_veiculos sv join movimentacao_caixadiario mv on sv.id = mv.saida_veiculo join entradas_veiculos ev on sv.entrada_veiculo = ev.id join veiculos v on ev.veiculo = v.id join tipos t on v.tipo = t.id ";
 		if($id != 0)
 		{
-			$query.=" WHERE id=".$id." LIMIT 1";
+			$query.="WHERE mv.caixadiario=".$id;
 		}
 		$response=array();
 		$result=mysqli_query($connection, $query);

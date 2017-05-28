@@ -50,6 +50,19 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
+	function retrieveByUser($id=0)
+	{
+		global $connection;
+		$query="SELECT * FROM caixadiarios WHERE usuario={$id} AND isfechado=0 LIMIT 1";
+		$response=array();
+		$result=mysqli_query($connection, $query);
+		while($row=mysqli_fetch_object($result))
+		{
+			$response[]=$row;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($response);
+	}
 	function update()
 	{
 		global $connection;

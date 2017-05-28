@@ -83,15 +83,18 @@ use Lcobucci\JWT\Parser;
 			// agora sim parte normal da classe
 
 			if ($token->getClaim('admin') == 1) {
-				if(empty($_GET["id"])){
+				if(!empty($_GET["id"])){
 					$id=intval($_GET["id"]);
 					retrieve($id);
-				} else {
+				} elseif (!empty($_GET["usuario"])) {
+					$usuario=intval($_GET["usuario"]);
+					retrieveByUser($usuario);
+				}
+				 else {
 					retrieve();
 				}
 			}else{
-				$id=intval($_GET["id"]);
-				retrieve($id);
+				retrieveByUser(getIdUser());
 			}
 
 			break;

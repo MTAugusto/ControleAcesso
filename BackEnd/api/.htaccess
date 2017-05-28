@@ -3,6 +3,8 @@ RewriteEngine On
 RewriteRule ^login/?$ controlador/Login.php [NC,L]
 
 RewriteRule ^caixadiario/?$ controlador/CaixaDiario.php [NC,L]
+RewriteRule ^caixadiario/([0-9]+)/?$ controlador/CaixaDiario.php?id=$1 [NC,L]
+RewriteRule ^caixadiario/usuario/([0-9]+)/?$ controlador/CaixaDiario.php?usuario=$1 [NC,L]
 
 RewriteRule ^cliente/?$ controlador/Cliente.php [NC,L]
 RewriteRule ^cliente/([0-9]+)/?$ controlador/Cliente.php?id=$1 [NC,L]
@@ -22,3 +24,4 @@ RewriteRule ^entrada-veiculo/([0-9]+)/?$ controlador/EntradaVeiculo.php?id=$1 [N
 
 RewriteRule ^saida-veiculo/?$ controlador/SaidaVeiculo.php [NC,L]
 RewriteRule ^saida-veiculo/([0-9]+)/?$ controlador/SaidaVeiculo.php?id=$1 [NC,L]
+RewriteRule ^saida-veiculo/caixa/([0-9]+)/?$ controlador/SaidaVeiculo.php?caixa=$1 [NC,L]
