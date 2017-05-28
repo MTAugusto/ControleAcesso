@@ -13,9 +13,8 @@ angular.module('spa')
                     }).success(function (response) {
                         $scope.veiculos = response;
 
-                        //if ternario - if normal
                         $scope.veiculos.map(function(element){
-                            element.ismensal = element.ismensal == 1 ? "Sim" : "Não";
+                            element.ismensal = element.ismensal == 1 ? "Mensal" : "Diária";
                         });
                     
                     }).error(function (response) {
