@@ -127,12 +127,14 @@
 		parse_str(file_get_contents("php://input"),$post_vars);
 		$id=$post_vars['id'];
 		$tipo=$post_vars['tipo'];
+		$cliente=$post_vars['cliente'];
 		$placa=$post_vars["placa"];
 		$modelo=$post_vars["modelo"];
 		$cor=$post_vars["cor"];
 		$ismensal=$post_vars["ismensal"];
 		$query="UPDATE veiculos SET tipo={$tipo}, placa='{$placa}', modelo='{$modelo}', cor='{$cor}', ismensal = {$ismensal} WHERE id=".$id;
-		if(mysqli_query($connection, $query))
+		$query2="UPDATE clientes_veiculos SET cliente={$cliente} WHERE veiculo=".$id;
+		if(mysqli_query($connection, $query) && mysqli_query($connection, $query2))
 		{
 			$response=array(
 				'status' => 1,
