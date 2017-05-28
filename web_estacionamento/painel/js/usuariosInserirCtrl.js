@@ -1,7 +1,7 @@
 angular.module('spa')
 	.controller('usuariosInserirCtrl', [ '$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
 	function($scope, $rootScope,$routeParams, $http, $location, $mdToast){
-    	$scope.name = 'Usuário > Inserir novo usuario';
+    	$scope.name = 'Usuários > Inserir novo usuario';
 
         $scope.statusList = [
             {status: 0, value: "Inativo"},

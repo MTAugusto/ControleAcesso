@@ -1,7 +1,7 @@
 angular.module('spa')
      .controller('veiculosCtrl', ['$scope', '$rootScope', '$mdToast', '$http', '$location',
      function($scope, $rootScope, $mdToast, $http, location){
-          $scope.name = 'Administração de Usuários';
+          $scope.name = 'Administração de Veículos';
 
           $scope.consultarVeiculos = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");

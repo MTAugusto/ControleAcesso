@@ -1,7 +1,7 @@
 angular.module('spa')
      .controller('tiposEditarCtrl', ['$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
           function($scope, $rootScope, $routeParams, $http, $location, $mdToast) {
-               $scope.name = 'Editar tipo veiculo';
+               $scope.name = 'Tipos > Editar tipo do veículo';
 
                $scope.parametrosDaUrl = $location.search();
 

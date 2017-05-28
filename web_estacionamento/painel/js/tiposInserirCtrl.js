@@ -1,7 +1,7 @@
 angular.module('spa')
      .controller('tiposInserirCtrl', ['$scope', '$rootScope', '$routeParams', '$http', '$location', '$mdToast',
           function($scope, $rootScope, $routeParams, $http, $location, $mdToast) {
-               $scope.name = 'Inserir novo tipo de veiculo';
+               $scope.name = 'Tipos > Inserir novo tipo de veículo';
 
                $scope.cancelar = function() {
                     $location.path('tipos').search({});
