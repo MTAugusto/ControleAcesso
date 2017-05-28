@@ -1,4 +1,5 @@
-<div ng-controller="usuariosCtrl" ng-init="consultarUsuarios()"> <!-- EDITAR CONTROLLER -->
+<div ng-controller="usuariosCtrl" ng-init="consultarUsuarios()">
+	<!-- EDITAR CONTROLLER -->
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
@@ -6,25 +7,28 @@
 			</md-button>
 			<h2>
 				<span>{{name}}</span>
-			</h2>					    
+			</h2>
+			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste">
+				<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+			</md-button>
 		</div>
 	</md-toolbar>
 	<div class="spaceToolbar"></div>
 
-  <div class="md-padding" layout-margin >
-  <md-card class="semMargem">
-    <md-input-container class="campoPesquisa">
-      <label>Pesquisar...</label>
-      <input type="text" ng-model="filtro">
-    </md-input-container>
-     <!--- EDITAR NOME DO ARRAY ABAIXO-->
-    <div ng-hide="true">{{(itensFiltrados = (usuarios | filter: filtro))}}</div>
-  </md-card>
-  </div>
+	<div class="md-padding" layout-margin>
+		<md-card class="semMargem">
+			<md-input-container class="campoPesquisa">
+				<label>Pesquisar...</label>
+				<input type="text" ng-model="filtro">
+			</md-input-container>
+			<!--- EDITAR NOME DO ARRAY ABAIXO-->
+			<div ng-hide="true">{{(itensFiltrados = (usuarios | filter: filtro))}}</div>
+		</md-card>
+	</div>
 
 	<div class="md-padding" layout-margin>
 
-    <!-- EDITAR COLUMNS-KEYS COM AS COLUNAS QUE IRÃO EXIBIR -->
+		<!-- EDITAR COLUMNS-KEYS COM AS COLUNAS QUE IRÃO EXIBIR -->
 		<mdt-table mdt-row="{
       data: itensFiltrados,
       'table-row-id-key': 'id',
@@ -35,21 +39,23 @@
         'admin'
       ]
     }">
-      <mdt-header-row>
-        <!-- COLOCAR UM MD-COLUMN PRA CADA COLUNA EXIBIDA ACIMA NO COLUMN-KEYS-->
-        <mdt-column align-rule="left">Nome</mdt-column>
-        <mdt-column align-rule="right">Usuário</mdt-column>
-        <mdt-column align-rule="right">Status</mdt-column>
-        <mdt-column align-rule="right">Permissão</mdt-column>
-      </mdt-header-row>
-      <mdt-custom-cell column-key="nome"> <!-- COLOCAR O COLUMN-KEY CLICAVEL-->
-        <!-- EDITAR CAMINHO DO LINK ABAIXO -->
-        <a ng-href="#/usuarios/editar?id={{clientScope.getUsuariosPorId(rowId).id}}">{{clientScope.getUsuariosPorId(rowId).nome}}</a>
-      </mdt-custom-cell>
-    </mdt-table>
+			<mdt-header-row>
+				<!-- COLOCAR UM MD-COLUMN PRA CADA COLUNA EXIBIDA ACIMA NO COLUMN-KEYS-->
+				<mdt-column align-rule="left">Nome</mdt-column>
+				<mdt-column align-rule="right">Usuário</mdt-column>
+				<mdt-column align-rule="right">Status</mdt-column>
+				<mdt-column align-rule="right">Permissão</mdt-column>
+			</mdt-header-row>
+			<mdt-custom-cell column-key="nome">
+				<!-- COLOCAR O COLUMN-KEY CLICAVEL-->
+				<!-- EDITAR CAMINHO DO LINK ABAIXO -->
+				<a ng-href="#/usuarios/editar?id={{clientScope.getUsuariosPorId(rowId).id}}">{{clientScope.getUsuariosPorId(rowId).nome}}</a>
+			</mdt-custom-cell>
+		</mdt-table>
 
-    <md-button class="md-fab md-primary" ng-href="#/usuarios/inserir" aria-label="Adicionar"><!-- EDITAR CAMINHO ACIMA -->
-      <md-icon md-svg-src="img/icons/add.svg"></md-icon>
-    </md-button>
-	</div>    
+		<md-button class="md-fab md-primary" ng-href="#/usuarios/inserir" aria-label="Adicionar">
+			<!-- EDITAR CAMINHO ACIMA -->
+			<md-icon md-svg-src="img/icons/add.svg"></md-icon>
+		</md-button>
+	</div>
 </div>
