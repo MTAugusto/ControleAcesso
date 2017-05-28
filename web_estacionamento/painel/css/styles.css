@@ -164,7 +164,7 @@ md-input-container{
 	margin:15px;
 }
 
-.md-padding > .md-fab {
+.md-fab {
 	position: fixed;
 	right: 0;
 	top: calc(100% - 2.5em);
@@ -182,5 +182,11 @@ md-input-container{
 
 /*// Alterações na cor do loadbar*/
 #loading-bar .bar {
-  background: #000 !important;  
+  background: #000 !important;
+}
+
+.botao-acessibilidade{
+  top: 10px ;
+  right: 10px;
+  position: absolute;
 }
