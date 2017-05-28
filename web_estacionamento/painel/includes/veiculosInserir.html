@@ -7,7 +7,7 @@
             <h2>
 				<span>{{name}}</span>
 			</h2>
-            <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste">
+            <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
                 <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
             </md-button>
         </div>
@@ -32,7 +32,7 @@
                     <div layout="row">
                         <p class="descSelect">Tipo de cobrança: </p>
                         <md-input-container class="md-block">
-                            <md-select ng-model="veiculo.ismensal" placeholder="Selecione o tipo de cobrança" >
+                            <md-select ng-model="veiculo.ismensal" placeholder="Selecione o tipo de cobrança">
                                 <md-option value="{{mensalidades.ismensal}}" ng-repeat="mensalidades in mensalidadesList">{{mensalidades.desc}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -40,7 +40,7 @@
                     <div layout="row">
                         <p class="descSelect">Tipo do veículo: </p>
                         <md-input-container class="md-block">
-                            <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo de cobrança" >
+                            <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo de cobrança">
                                 <md-option value="{{tipo.id}}" ng-repeat="tipo in tipos">{{tipo.nome}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -48,12 +48,12 @@
                     <div layout="row">
                         <p class="descSelect">Proprietário do veículo: </p>
                         <md-input-container class="md-block">
-                            <md-select ng-model="veiculo.cliente" placeholder="Selecione um cliente" >
+                            <md-select ng-model="veiculo.cliente" placeholder="Selecione um cliente">
                                 <md-option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{cliente.nome}}</md-option>
                             </md-select>
                         </md-input-container>
                     </div>
-                    
+
                     <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
                     <md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
                 </form>

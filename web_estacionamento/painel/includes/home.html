@@ -7,7 +7,7 @@
 			<h2>
 				<span>{{name}}</span>
 			</h2>
-			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste">
+			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
 				<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
 			</md-button>
 		</div>
@@ -15,41 +15,42 @@
 	<div class="spaceToolbar"></div>
 
 	<div ng-cloak>
-	  <md-content>
-	    <md-tabs md-dynamic-height md-border-bottom>
-	      <md-tab label="Entrada de veículo">
-	        <md-content class="md-padding">
-	        	<md-card>
-	        		<md-card-content>
-	        			<h3>Entrada</h3>
-	        			<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, a t posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-	        		</md-card-content>
-	        	</md-card>
-	        </md-content>
-	      </md-tab>
-	      <md-tab label="Saída de veículo">
-	        <md-content class="md-padding">
-	        	<md-card>
-	        		<md-card-content>
-	        			<h3>Saída</h3>
-	        			<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-	        		</md-card-content>
-	        	</md-card>
-	        </md-content>
-	      </md-tab>
-	      <md-tab label="Caixa Diário">
-	        <md-content class="md-padding">
-	        	<md-card>
-	        		<md-card-content>
-	        			<p>Caixa do dia: {{caixadiario.data | date: "fullDate"}}</p>
-	        			<p>Abertura: {{caixadiario.abertura | date: "fullDate"}}</p>
-	        		</md-card-content>
-	        	</md-card>
+		<md-content>
+			<md-tabs md-dynamic-height md-border-bottom>
+				<md-tab label="Entrada de veículo">
+					<md-content class="md-padding">
+						<md-card>
+							<md-card-content>
+								<h3>Entrada</h3>
+								<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, a t posuere mi. Cras eu fermentum nunc. Sed id ante eu
+									orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+							</md-card-content>
+						</md-card>
+					</md-content>
+				</md-tab>
+				<md-tab label="Saída de veículo">
+					<md-content class="md-padding">
+						<md-card>
+							<md-card-content>
+								<h3>Saída</h3>
+								<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+									commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+							</md-card-content>
+						</md-card>
+					</md-content>
+				</md-tab>
+				<md-tab label="Caixa Diário">
+					<md-content class="md-padding">
+						<md-card>
+							<md-card-content>
+								<p>Caixa do dia: {{caixadiario.data | date: "fullDate"}}</p>
+								<p>Abertura: {{caixadiario.abertura | date: "fullDate"}}</p>
+							</md-card-content>
+						</md-card>
 
-	        	<div class="md-padding" layout-margin>
+						<div class="md-padding" layout-margin>
 
-					<mdt-table table-card="{title: 'Movimentações'}" 
-				             mdt-row="{
+							<mdt-table table-card="{title: 'Movimentações'}" mdt-row="{
 				                      data: nutritionList,
 				                      'column-keys': [
 				                          'placa',
@@ -59,27 +60,27 @@
 				                          'tipo'
 				                      ]
 				                      }">
-				    <mdt-header-row>
-				      <mdt-column align-rule="left">Placa</mdt-column>
-				      <mdt-column align-rule="right">Entrada</mdt-column>
-				      <mdt-column align-rule="right">Saída</mdt-column>
-				      <mdt-column align-rule="right">Valor</mdt-column>
-				      <mdt-column align-rule="right">Tipo</mdt-column>
-				    </mdt-header-row>
-				  </mdt-table>
-				</div>
+								<mdt-header-row>
+									<mdt-column align-rule="left">Placa</mdt-column>
+									<mdt-column align-rule="right">Entrada</mdt-column>
+									<mdt-column align-rule="right">Saída</mdt-column>
+									<mdt-column align-rule="right">Valor</mdt-column>
+									<mdt-column align-rule="right">Tipo</mdt-column>
+								</mdt-header-row>
+							</mdt-table>
+						</div>
 
 
-				<md-card>
-		        	<md-card-content>
-		        		<p>Ações</p>
-		        		<md-button type="button" class="md-raised md-primary right" ng-click="abrirCaixaDiario()">Abrir caixa diário</md-button>
-                    	<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
-		        	</md-card-content>
-		        </md-card>
-	        </md-content>
-	      </md-tab>
-	    </md-tabs>
-	  </md-content>
+						<md-card>
+							<md-card-content>
+								<p>Ações</p>
+								<md-button type="button" class="md-raised md-primary right" ng-click="abrirCaixaDiario()">Abrir caixa diário</md-button>
+								<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
+							</md-card-content>
+						</md-card>
+					</md-content>
+				</md-tab>
+			</md-tabs>
+		</md-content>
 	</div>
 </div>
