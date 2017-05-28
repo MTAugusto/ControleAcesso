@@ -164,7 +164,7 @@ md-input-container{
 	margin:15px;
 }
 
-.md-fab {
+.md-padding > .md-fab {
 	position: fixed;
 	right: 0;
 	top: calc(100% - 2.5em);
