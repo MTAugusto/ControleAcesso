@@ -143,8 +143,18 @@ md-card-content{
  md-card{
     background-color: rgb(229,115,115) !important;
  }
+ button, .md-button{
+   color: black !important;
+ }
  a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab{
    background-color: #136012 !important;
+ }
+ /*cor de botao*/
+a.md-button.md-raised, .md-button.md-raised{
+   background: red !important;
+ }
+ a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab{
+   background-color: rgb(0,137,123)  !important;
  }
  span{
    color: white !important;
