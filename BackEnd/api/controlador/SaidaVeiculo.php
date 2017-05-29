@@ -18,6 +18,8 @@ include '../negocio/Token.php';
 				{
 					$id=intval($_GET["id"]);
 					retrieve($id);
+				}elseif (!empty($_GET["caixa"])) {
+					retrieveByCaixa($_GET["caixa"]);
 				}
 				else retrieve();
 			}

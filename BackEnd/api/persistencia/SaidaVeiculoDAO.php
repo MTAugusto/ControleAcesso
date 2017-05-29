@@ -57,9 +57,6 @@
 		}elseif ($tipo[0]->id == 0) {
 			$erro = "o tipo do veículo";
 			$error = true;
-		}elseif ($mensalidade[0]->id == 0) {
-			$erro = "a mensalidade do veículo";
-			$error = true;
 		}
 
 		if ($error) {
@@ -167,7 +164,26 @@
 		$query="SELECT sv.id, sv.data as datasaida, ev.data as dataentrada, sv.valor, sv.iscortesia, v.placa, t.nome as tipo from saidas_veiculos sv join movimentacao_caixadiario mv on sv.id = mv.saida_veiculo join entradas_veiculos ev on sv.entrada_veiculo = ev.id join veiculos v on ev.veiculo = v.id join tipos t on v.tipo = t.id ";
 		if($id != 0)
 		{
-			$query.="WHERE mv.caixadiario=".$id;
+			$query.="WHERE sv.id=".$id;
+		}
+		$response=array();
+		$result=mysqli_query($connection, $query);
+		while($row=mysqli_fetch_object($result))
+		{
+			$response[]=$row;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($response);
+	}
+
+	function retrieveByCaixa($id=0)
+	{
+
+		global $connection;
+		$query="SELECT sv.id, sv.data as datasaida, ev.data as dataentrada, sv.valor, sv.iscortesia, v.placa, t.nome as tipo from saidas_veiculos sv join movimentacao_caixadiario mv on sv.id = mv.saida_veiculo join entradas_veiculos ev on sv.entrada_veiculo = ev.id join veiculos v on ev.veiculo = v.id join tipos t on v.tipo = t.id ";
+		if($id != 0)
+		{
+			$query.="WHERE mv.caixadiario =".$id;
 		}
 		$response=array();
 		$result=mysqli_query($connection, $query);

@@ -71,7 +71,7 @@
 		$fechamento = date("Y-m-d H:i:s");
 		$usuario = getIdUser();
 
-		$query1="select sum(valor) AS valortotal from movimentacao_caixadiario mc join saidas_veiculos sv on mc.saida_veiculo = sv.id  where caixadiario = $id";
+		$query1="SELECT sum(valor) AS valortotal from movimentacao_caixadiario mc join saidas_veiculos sv on mc.saida_veiculo = sv.id where caixadiario = $id and sv.usuario = $usuario";
 		$caixa=array();
 		$result=mysqli_query($connection, $query1);
 		while($row=mysqli_fetch_object($result))
@@ -80,13 +80,17 @@
 		}
 
 		$valorFechamento = $caixa[0]->valortotal;
+		if ($valorFechamento == NULL) {
+			$valorFechamento = 0;
+		}
 
 		$query2="UPDATE caixadiarios SET fechamento='{$fechamento}', valortotal='{$valorFechamento}', isfechado=1 WHERE id=$id AND usuario=$usuario";
 		if(mysqli_query($connection, $query2))
 		{
 			$response=array(
 				'status' => 1,
-				'message' =>'Caixa fechado com sucesso.'
+				'message' =>'Caixa fechado com sucesso.',
+				'valorfechamento' => "$valorFechamento"
 			);
 		}
 		else
