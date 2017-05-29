@@ -1,4 +1,4 @@
-<div ng-init="consultarCaixa()">
+<div ng-init="consultarCaixa()" id="popupContainer">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
@@ -17,41 +17,62 @@
 	<div ng-cloak>
 		<md-content>
 			<md-tabs md-dynamic-height md-border-bottom>
-				<md-tab label="Entrada de veículo">
+				<md-tab label="Entrada de veículo" ng-init="consultarVeiculos()">
 					<md-content class="md-padding">
 						<md-card>
 							<md-card-content>
 								<h3>Entrada</h3>
-								<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, a t posuere mi. Cras eu fermentum nunc. Sed id ante eu
-									orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+								<p ng-if="!caixaAberto">Atenção: seu caixa diário está fechado, para fazer saídas de veículos é necessário abri-lo.</p>
+								<form ng-submit="inserirEntrada(veiculoId)">
+									<div layout="row">
+										<p class="descSelect">Veículo: </p>
+										<md-input-container class="md-block">
+											<md-select ng-model="veiculoId" placeholder="Veículo" required>
+												<md-option value="{{veiculo.id}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
+											</md-select>
+										</md-input-container>
+									</div>
+
+				                    <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir entrada</md-button>
+			                    </form>
 							</md-card-content>
 						</md-card>
 					</md-content>
 				</md-tab>
-				<md-tab label="Saída de veículo">
+				<md-tab label="Saída de veículo" ng-if="caixaAberto">
 					<md-content class="md-padding">
 						<md-card>
 							<md-card-content>
 								<h3>Saída</h3>
-								<p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
-									commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+
+								<form ng-submit="inserirSaida(placa)">
+									<div layout="row">
+										<p class="descSelect">Veículo: </p>
+										<md-input-container class="md-block">
+											<md-select ng-model="placa" placeholder="Veículo" required>
+												<md-option value="{{veiculo.placa}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
+											</md-select>
+										</md-input-container>
+									</div>
+
+				                    <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir entrada</md-button>
+			                    </form>
 							</md-card-content>
 						</md-card>
 					</md-content>
 				</md-tab>
-				<md-tab label="Caixa Diário">
+				<md-tab label="Caixa Diário" ng-if="caixaAberto">
 					<md-content class="md-padding">
 						<md-card>
 							<md-card-content>
-								<p>Caixa do dia: {{caixadiario.data | date: "fullDate"}}</p>
-								<p>Abertura: {{caixadiario.abertura | date: "fullDate"}}</p>
+								<p>Caixa de {{caixadiario.data | date: "fullDate"}}, aberto às {{caixadiario.abertura | date: "mediumTime"}}.</p>
 							</md-card-content>
 						</md-card>
 
 						<div class="md-padding" layout-margin>
 
 							<mdt-table table-card="{title: 'Movimentações'}" mdt-row="{
-				                      data: nutritionList,
+				                      data: saidasList,
 				                      'column-keys': [
 				                          'placa',
 				                          'dataentrada',
@@ -74,13 +95,25 @@
 						<md-card>
 							<md-card-content>
 								<p>Ações</p>
+								<md-button type="button" class="md-raised md-primary right" ng-click="fecharCaixaDiario()">Fechar caixa diário</md-button>
+								<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
+							</md-card-content>
+						</md-card>
+					</md-content>
+				</md-tab>
+
+			<md-tab label="Caixa Diário" ng-if="!caixaAberto">
+					<md-content class="md-padding">
+						<md-card>
+							<md-card-content>
+								<p>O caixa diário está fechado.</p>
+								<p>Abra o caixa diário para fazer saídas de veículos.</p>
 								<md-button type="button" class="md-raised md-primary right" ng-click="abrirCaixaDiario()">Abrir caixa diário</md-button>
 								<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
 							</md-card-content>
 						</md-card>
 					</md-content>
 				</md-tab>
-			</md-tabs>
 		</md-content>
 	</div>
 </div>
