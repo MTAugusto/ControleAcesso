@@ -1,136 +1,52 @@
   angular.module('spa').controller('HomeCtrl', ['$scope', '$rootScope', '$mdToast', '$http', '$location',
-            function($scope, $rootScope, $mdToast, $http, location,$mdDialog) {
+            function($scope, $rootScope, $mdToast, $http, location, $mdDialog) {
           $scope.name = 'Início';
 
           var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
           var idUserByToken = JSON.parse(atob((token.split("."))[1])).id;
 
-          $scope.consultarCaixa = function() {
-            if (token) {
-                  $scope.caixaAberto = true;
-                  $http({
-                      url: $rootScope.api + '/caixadiario/usuario/' + idUserByToken,
-                      method: 'GET',
-                      headers: {
-                    	       'Authorization': token
-        	       	    	},
-                      }).success(function(response) {
-                          $scope.caixadiario = response[0];
+          $scope.finalizacao = false;
 
-                          if ($scope.caixadiario == null || $scope.caixadiario.isfechado == 1) {
-                            $scope.caixaAberto = false;
-                            return;
-                          }
-                          $scope.caixadiario.abertura = new Date($scope.caixadiario.abertura);
-                          $scope.caixaAberto = true;
-                          $scope.consultarSaidas();
-                          console.log($scope.caixadiario);
-                      }).error(function(response) {
-                          $mdToast.show($mdToast.simple()
-                              .content(response.message)
-                              .hideDelay(3000));
-                          console.log(response);
-                          if (response.status == 2) window.location = "/#/login";
-                      });
-             	} else {
-                  console.log("sem token");
-                  window.location = "/#/login";
-              }
-          };
+          $scope.finalizar = function () {
+            $scope.finalizacao = false;
+          }
 
-          $scope.abrirCaixaDiario = function() {
-                   if (token) {
-                           $http({
-                                url: $rootScope.api + '/caixadiario',
-                                dataType: 'json',
-                                method: 'POST',
-                                headers: {
-                                     'Authorization': token,
-                                     'Content-Type': 'application/x-www-form-urlencoded'
-                                }
+          $scope.cadastrarVeiculo = function() {
+                   window.location = "/painel/#/veiculos/inserir";
+               };
+
+
+           $scope.consultarCaixa = function() {
+                 if (token) {
+                       $scope.caixaAberto = true;
+                       $http({
+                           url: $rootScope.api + '/caixadiario/usuario/' + idUserByToken,
+                           method: 'GET',
+                           headers: {
+                                     'Authorization': token
+                              },
                            }).success(function(response) {
-                                $mdToast.show($mdToast.simple()
-                                     .content(response.message)
-                                     .hideDelay(3000));
-                                $scope.consultarCaixa();
+                               $scope.caixadiario = response[0];
+
+                               if ($scope.caixadiario == null || $scope.caixadiario.isfechado == 1) {
+                                 $scope.caixaAberto = false;
+                                 return;
+                               }
+                               $scope.caixadiario.abertura = new Date($scope.caixadiario.abertura);
+                               $scope.caixaAberto = true;
+                               console.log($scope.caixadiario);
                            }).error(function(response) {
-                                $mdToast.show($mdToast.simple()
-                                     .content(response.message)
-                                     .hideDelay(3000));
-                                console.log(response);
-                                if (response.status == 2) window.location = "/#/login";
+                               $mdToast.show($mdToast.simple()
+                                   .content(response.message)
+                                   .hideDelay(3000));
+                               console.log(response);
+                               if (response.status == 2) window.location = "/#/login";
                            });
-                      } else {
-                           alert("sem token");
-                           window.location = "/#/login";
-                      }
-           };
-
-          $scope.consultarSaidas = function() {
-            if (token) {
-                  $http({
-                      url: $rootScope.api + '/saida-veiculo/caixa/' + $scope.caixadiario.id,
-                      method: 'GET',
-                      headers: {
-                    	       'Authorization': token
-        	       	    	},
-                      }).success(function(response) {
-                          $scope.saidasList = response;
-                          console.log(response);
-                      }).error(function(response) {
-                          $mdToast.show($mdToast.simple()
-                              .content(response.message)
-                              .hideDelay(3000));
-                          console.log(response);
-                          if (response.status == 2) window.location = "/#/login";
-                      });
-             	} else {
-                  console.log("sem token");
-                  window.location = "/#/login";
-              }
-          };
-
-
-          $scope.fecharCaixaDiario = function() {
-            if ($scope.caixadiario.isfechado == 1) {
-              $mdToast.show($mdToast.simple()
-                .content("O caixa diário já está fechado")
-                .hideDelay(3000));
-              return;
-            }
-                      if (token) {
-                           $http({
-                                url: $rootScope.api + '/caixadiario',
-                                dataType: 'json',
-                                method: 'PUT',
-                                headers: {
-                                     'Authorization': token,
-                                     'Content-Type': 'application/x-www-form-urlencoded'
-                                },
-                                data: $.param({
-                                     'id': $scope.caixadiario.id,
-                                })
-                           }).success(function(response) {
-                              console.log(response);
-                                $mdToast.show($mdToast.simple()
-                                     .content(response.message)
-                                     .hideDelay(3000));
-                                $scope.consultarCaixa();
-                           }).error(function(response) {
-                                $mdToast.show($mdToast.simple()
-                                     .content(response.message)
-                                     .hideDelay(3000));
-                                console.log(response);
-                                if (response.status == 2) window.location = "/#/login";
-                           });
-                      } else {
-                           alert("sem token");
-                           window.location = "/#/login";
-                      }
-           };
-
-
-
+                    } else {
+                       console.log("sem token");
+                       window.location = "/#/login";
+                   }
+               };
 
       $scope.consultarVeiculos = function(){
             var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
@@ -207,6 +123,8 @@
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
                                    .hideDelay(3000));
+                              $scope.saida = response;
+                              $scope.finalizacao = true;
                               console.log(response);
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
@@ -220,7 +138,6 @@
                          window.location = "/#/login";
                     }
                };
-
 
 
 

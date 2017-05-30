@@ -6,6 +6,12 @@
                    icon: './img/ic_home_black_24px.svg',
                    accesskey: 'I'
               },
+              {
+                   name: 'Caixa Diário',
+                   link: '#/caixa-diario',
+                   icon: './img/ic_attach_money_black_24px.svg',
+                   accesskey: 'A'
+              },
               //{name:'Administração', link:'#/administracao', icon:'vendas'},
               {
                    name: 'Usuários',

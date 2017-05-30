@@ -65,6 +65,11 @@
                     controller: 'veiculosEditarCtrl'
                })
 
+               .when('/caixa-diario', {
+                    templateUrl: 'includes/caixadiario.html',
+                    controller: 'caixadiarioCtrl'
+               })
+
                .otherwise({
                     redirectTo: '/'
                });
