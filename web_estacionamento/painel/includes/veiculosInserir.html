@@ -30,7 +30,7 @@
                         <input required ng-model="veiculo.cor" type="text">
                     </md-input-container>
                     <div layout="row">
-                        <p class="descSelect">Tipo de cobrança: </p>
+                        <p class="descSelect">Cobrança: </p>
                         <md-input-container class="md-block">
                             <md-select ng-model="veiculo.ismensal" placeholder="Selecione o tipo de cobrança">
                                 <md-option value="{{mensalidades.ismensal}}" ng-repeat="mensalidades in mensalidadesList">{{mensalidades.desc}}</md-option>
@@ -40,7 +40,7 @@
                     <div layout="row">
                         <p class="descSelect">Tipo do veículo: </p>
                         <md-input-container class="md-block">
-                            <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo de cobrança">
+                            <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo do veículo">
                                 <md-option value="{{tipo.id}}" ng-repeat="tipo in tipos">{{tipo.nome}}</md-option>
                             </md-select>
                         </md-input-container>
@@ -52,10 +52,10 @@
                                 <md-option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{cliente.nome}}</md-option>
                             </md-select>
                         </md-input-container>
+                        <md-button type="button" class="md-raised right" ng-click="novoCliente()">Novo cliente</md-button>
                     </div>
-
                     <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
-                    <md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
+                    <md-button type="button" class="md-raised md-accent right" ng-click="cancelar()">Cancelar</md-button>
                 </form>
             </md-card-content>
         </md-card>

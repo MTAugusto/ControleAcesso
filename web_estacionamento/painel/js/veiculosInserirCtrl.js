@@ -8,6 +8,9 @@ angular.module('spa')
                     {ismensal: 1, desc: "Cobrança mensal"}
                ];
 
+               $scope.novoCliente = function () {
+                    window.location = "/painel/#/clientes/inserir";
+               }
 
                $scope.consultar = function() {
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
