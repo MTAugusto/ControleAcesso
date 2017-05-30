@@ -18,12 +18,9 @@ function fnConsomeWs() {
 
                if (ficarLogado) {
                     localStorage.setItem('user_session', response.token);
-                    console.log("token gravado no local storage");
                } else {
                     sessionStorage.setItem('user_session', response.token);
-                    console.log("token gravado no session storage");
                }
-               console.log(response);
                window.location = "/painel/#/";    
           },
           error: function(response) {
