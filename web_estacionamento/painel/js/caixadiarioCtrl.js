@@ -78,7 +78,7 @@ angular.module('spa')
                               },
                            }).success(function(response) {
                                $scope.saidasList = response;
-                              
+                              $scope.valortotalcaixa = 0;
                               for (var i = $scope.saidasList.length - 1; i >= 0; i--) {
                                 $scope.valortotalcaixa += parseFloat($scope.saidasList[i].valor);;
                               }

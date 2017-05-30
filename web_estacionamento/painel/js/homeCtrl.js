@@ -104,8 +104,9 @@
                     }
                };
 
-        $scope.inserirSaida = function(placa) {
+        $scope.inserirSaida = function(placa, cortesia) {
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
+                    console.log(cortesia)
                     if (token) {
                          $http({
                               url: $rootScope.api + '/saida-veiculo',
@@ -117,7 +118,7 @@
                               },
                               data: $.param({
                                 'placa': placa,
-                                'cortesia': 0
+                                'cortesia': cortesia
                                 })
                          }).success(function(response) {
                               $mdToast.show($mdToast.simple()
