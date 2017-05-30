@@ -1,6 +1,11 @@
     angular.module('spa').controller('MenuItemsCtrl', function($scope) {
          //{name:'exemple', link:'http://exemple.com or #/exemple', icon:'assets-cache.js name'},
-         $scope.MenuItems = [{
+         
+         var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
+         var isAdmin = JSON.parse(atob((token.split("."))[1])).admin;
+
+        if (isAdmin == 1) {
+          $scope.MenuItems = [{
                    name: 'Início',
                    link: '#/',
                    icon: './img/ic_home_black_24px.svg',
@@ -37,10 +42,35 @@
                    link: '#/veiculos',
                    icon: './img/ic_directions_car_black_24px.svg',
                    accesskey: 'V'
-              }
+              }];
+        } else {
+          $scope.MenuItems = [{
+                   name: 'Início',
+                   link: '#/',
+                   icon: './img/ic_home_black_24px.svg',
+                   accesskey: 'I'
+              },
+              {
+                   name: 'Caixa Diário',
+                   link: '#/caixa-diario',
+                   icon: './img/ic_attach_money_black_24px.svg',
+                   accesskey: 'A'
+              },
+              {
+                   name: 'Clientes',
+                   link: '#/clientes',
+                   icon: './img/ic_group_add_black_24px.svg',
+                   accesskey: 'C'
+              },
+              {
+                   name: 'Veículos',
+                   link: '#/veiculos',
+                   icon: './img/ic_directions_car_black_24px.svg',
+                   accesskey: 'V'
+              }];
+        }
 
-
-         ];
+         
          $scope.sair = function() {
               localStorage.removeItem('user_session');
               sessionStorage.removeItem('user_session');
