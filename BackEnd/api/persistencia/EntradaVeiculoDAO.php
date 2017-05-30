@@ -8,11 +8,25 @@
 		$dataAtual=date("Y-m-d H:i:s", time());
 		$usuarioAtual = getIdUser();
 
-		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
+		//buscar entrada veiculo -- $entrada[0]->id;
+		$query2="SELECT * FROM entradas_veiculos WHERE veiculo='".$veiculo."' AND jasaiu=0 LIMIT 1";
+		$entrada=array();
+		$result=mysqli_query($connection, $query2);
+		while($row=mysqli_fetch_object($result))
+		{
+			$entrada[]=$row;
+		}
 
-		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
-
-		// VERIFICAR SE JÁ NÃO EXISTE UMA ENTRADA EM ABERTO PARA ESSE VEICULO
+		if ($entrada[0]->id > 0) {
+			$response=array(
+				'status' => 0,
+				'message' =>'Já existe uma entrada em aberto para esse veículo.'
+			);
+			header("HTTP/2.0 400 Bad Request");
+			header('Content-Type: application/json');
+			echo json_encode($response);
+			return;
+		}
 
 		$query="INSERT INTO entradas_veiculos SET usuario={$usuarioAtual}, veiculo='{$veiculo}', data='{$dataAtual}', jasaiu=0";
 		if(mysqli_query($connection, $query))
