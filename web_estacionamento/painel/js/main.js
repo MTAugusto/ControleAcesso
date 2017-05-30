@@ -91,8 +91,6 @@
                          headers: {
                               'Authorization': token
                          },
-                    }).success(function(response) {
-                         console.log("Usuário já tem token OK");    
                     }).error(function(response) {
                          console.log("Token do usuário é inválido");
                          console.log(response);

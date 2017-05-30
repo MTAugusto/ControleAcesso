@@ -34,7 +34,6 @@
                                }
                                $scope.caixadiario.abertura = new Date($scope.caixadiario.abertura);
                                $scope.caixaAberto = true;
-                               console.log($scope.caixadiario);
                            }).error(function(response) {
                                $mdToast.show($mdToast.simple()
                                    .content(response.message)
@@ -57,7 +56,6 @@
                         headers: {'Authorization': token},
                     }).success(function (response) {
                         $scope.veiculos = response;
-                        console.log(response);
                     }).error(function (response) {
                         $mdToast.show($mdToast.simple()
                             .content(response.message)
@@ -106,7 +104,19 @@
 
         $scope.inserirSaida = function(placa, cortesia) {
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
-                    console.log(cortesia)
+                    
+                    // let dataAtual = new Date();
+                    // let dataCaixaAtual = new Date($scope.caixadiario.data);
+                    // dataAtual = dataAtual.toLocaleDateString();
+                    // dataCaixaAtual = dataCaixaAtual.toLocaleDateString();
+
+                    // if (dataCaixaAtual != dataAtual) {
+                    //   $mdToast.show($mdToast.simple()
+                    //       .content("Não é possível fazer entradas: o caixa é do dia anterior")
+                    //       .hideDelay(3000));
+                    //   return;
+                    // }
+
                     if (token) {
                          $http({
                               url: $rootScope.api + '/saida-veiculo',
@@ -126,7 +136,6 @@
                                    .hideDelay(3000));
                               $scope.saida = response;
                               $scope.finalizacao = true;
-                              console.log(response);
                          }).error(function(response) {
                               $mdToast.show($mdToast.simple()
                                    .content(response.message)
