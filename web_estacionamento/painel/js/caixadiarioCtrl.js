@@ -27,7 +27,6 @@ angular.module('spa')
                                $scope.caixadiario.abertura = new Date($scope.caixadiario.abertura);
                                $scope.caixaAberto = true;
                                $scope.consultarSaidas();
-                               console.log($scope.caixadiario);
                            }).error(function(response) {
                                $mdToast.show($mdToast.simple()
                                    .content(response.message)
@@ -118,7 +117,6 @@ angular.module('spa')
                                           'id': $scope.caixadiario.id,
                                      })
                                 }).success(function(response) {
-                                   console.log(response);
                                      $mdToast.show($mdToast.simple()
                                           .content(response.message)
                                           .hideDelay(3000));
