@@ -108,6 +108,7 @@
 			$dataAgora = new DateTime();
 			$tempoGasto = ($dataAgora->diff($dataEntrada)->format('%H'))*60+$dataAgora->diff($dataEntrada)->format('%I');
 			$valorPagar = ($tipo[0]->valorporhora/60)*$tempoGasto;
+			$valorPagar = round($valorPagar, 2);
 			$query6="INSERT INTO saidas_veiculos SET usuario={$usuarioAtual}, entrada_veiculo={$entrada[0]->id}, data='{$dataAtual}', valor={$valorPagar}, iscortesia=0";
 		}
 
