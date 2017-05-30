@@ -78,14 +78,18 @@
 			{
 				$response=array(
 					'status' => 1,
-					'message' =>'Saída com cortesia efetuada com sucesso!'
+					'message' =>'Saída com cortesia efetuada com sucesso!',
+					'valortotal' => 0
 				);
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				return;
 			}
 			else
 			{
 				$response=array(
 					'status' => 0,
-					'message' =>'Houve um erro na saída.'
+					'message' =>'Houve um erro na saída com cortesia.'
 				);
 				header("HTTP/2.0 400 Bad Request");
 				header('Content-Type: application/json');
