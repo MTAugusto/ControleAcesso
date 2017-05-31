@@ -104,18 +104,6 @@
 
         $scope.inserirSaida = function(placa, cortesia) {
                     var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
-                    
-                    // let dataAtual = new Date();
-                    // let dataCaixaAtual = new Date($scope.caixadiario.data);
-                    // dataAtual = dataAtual.toLocaleDateString();
-                    // dataCaixaAtual = dataCaixaAtual.toLocaleDateString();
-
-                    // if (dataCaixaAtual != dataAtual) {
-                    //   $mdToast.show($mdToast.simple()
-                    //       .content("Não é possível fazer entradas: o caixa é do dia anterior")
-                    //       .hideDelay(3000));
-                    //   return;
-                    // }
 
                     if (token) {
                          $http({
