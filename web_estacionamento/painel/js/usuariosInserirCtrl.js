@@ -9,8 +9,8 @@ angular.module('spa')
         ];
 
         $scope.adminList = [
-            {admin: 0, value: "Usuário comum"},
-            {admin: 1, value: "Administrador"}
+            {admin: 0, value: "Colaborador"},
+            {admin: 1, value: "Gerente"}
         ];
 
         $scope.cancelar = function(){
