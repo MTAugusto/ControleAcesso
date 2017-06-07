@@ -6,14 +6,14 @@ function fnConsomeWs() {
 
      $.ajax({
           type: "POST",
-          url: "http://localhost/ControleAcesso/BackEnd/api/controlador/Login.php",
+          url: "http://localhost/ControleAcesso/BackEnd/api/login",
           contentType: "application/x-www-form-urlencoded; charset=utf-8",
           dataType: "json",
           async: true,
           data: $.param({
-                        'usuario': usuario,
-                        'senha': senha
-                    }),
+               'usuario': usuario,
+               'senha': senha
+          }),
           success: function(response) {
 
                if (ficarLogado) {
@@ -24,7 +24,7 @@ function fnConsomeWs() {
                window.location = "/painel/#/";    
           },
           error: function(response) {
-               console.log(response.responseJSON);
+               console.log('Erro token' + '' + response.responseJSON);
           }
      });
 }
