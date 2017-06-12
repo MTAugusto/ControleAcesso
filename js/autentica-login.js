@@ -6,7 +6,7 @@ function fnConsomeWs() {
 
      $.ajax({
           type: "POST",
-          url: "http://localhost/ControleAcesso/BackEnd/api/login",
+          url: "http://localhost/ControleAcesso/api/login",
           contentType: "application/x-www-form-urlencoded; charset=utf-8",
           dataType: "json",
           async: true,

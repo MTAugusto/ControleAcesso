@@ -78,8 +78,8 @@
      main.controller('mainCtrl', function($rootScope, $scope, $http) {
 
 
-          $rootScope.api = "http://localhost/ControleAcesso/BackEnd/api";
-          //$rootScope.api = "http://montanheiro.me/api/controlador";
+          $rootScope.api = "http://localhost/ControleAcesso/api";
+          //$rootScope.api = "http://montanheiro.me/api";
 
           $scope.verificarLogin = function() {
                var token = sessionStorage.getItem("user_session") || localStorage.getItem("user_session");
