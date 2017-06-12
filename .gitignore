@@ -1,7 +1,3 @@
-/BackEnd/nbproject/private/
-/FrontEnd/bower_components
-/FrontEnd/node_modules
-/FrontEnd/bower.json
-/FrontEnd/LICENSE
-/FrontEnd/LICENSE.MD
-/FrontEnd/README.MD
+bower_components
+/painel/bower_components
+painel/bower.json
