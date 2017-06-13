@@ -1,40 +1,40 @@
-<?php
-include '../persistencia/EntradaVeiculoDAO.php';
-include '../persistencia/Connect.php';
-include '../negocio/Token.php';
+	<?php
+	include '../persistencia/EntradaVeiculoDAO.php';
+	include '../persistencia/Connect.php';
+	include '../negocio/Token.php';
 
-	$request_method=$_SERVER["REQUEST_METHOD"];
+		$request_method=$_SERVER["REQUEST_METHOD"];
 
-	switch($request_method)
-	{
-		case 'GET':
-			if(verificarLogin()){
+		switch($request_method)
+		{
+			case 'GET':
+				if(verificarLogin()){
 
-				if(!empty($_GET["id"]))
-				{
-					$id=intval($_GET["id"]);
-					retrieve($id);
+					if(!empty($_GET["id"]))
+					{
+						$id=intval($_GET["id"]);
+						retrieve($id);
+					}
+					else retrieve();
 				}
-				else retrieve();
-			}
-			break;
-		case 'POST':
-			if(verificarLogin()) insert();
-			break;
-		case 'OPTIONS':
-			break;
-		// case 'PUT':
-		// 	if(verificarLogin()) update();
-		// 	break;
-		// case 'DELETE':
-		// 	// Delete Product
-		// 	$id=intval($_GET["id"]);
-		// 	delete($id);
-		// 	break;
-		default:
-			// Invalid Request Method
-			header("HTTP/2.0 405 Method Not Allowed");
-			break;
-	}
+				break;
+			case 'POST':
+				if(verificarLogin()) insert();
+				break;
+			case 'OPTIONS':
+				break;
+			// case 'PUT':
+			// 	if(verificarLogin()) update();
+			// 	break;
+			// case 'DELETE':
+			// 	// Delete Product
+			// 	$id=intval($_GET["id"]);
+			// 	delete($id);
+			// 	break;
+			default:
+				// Invalid Request Method
+				header("HTTP/2.0 405 Method Not Allowed");
+				break;
+		}
 
-?>
+	?>
