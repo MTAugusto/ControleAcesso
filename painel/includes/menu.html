@@ -1,31 +1,31 @@
-<md-toolbar>
-	<h1 class="md-toolbar-tools">SafePark</h1>
-</md-toolbar>
-<div class="spaceToolbar"></div>
+	<md-toolbar>
+		<h1 class="md-toolbar-tools">SafePark</h1>
+	</md-toolbar>
+	<div class="spaceToolbar"></div>
 
-<!-- Dynamic menu -->
+	<!-- Dynamic menu -->
 
-<md-list ng-controller="MenuItemsCtrl">
-	<a ng-repeat="item in MenuItems" ng-href="{{item.link}}" ng-click="toggleLeft()">
-		<md-list-item>
-			<button class="md-no-style bigMenuItensSlidenav" ng-click="">
-				<div class="menuIcon">
-					<md-icon md-svg-icon="{{item.icon}}"></md-icon>
-				</div>
-				<div class="md-list-item-inner">
-					<span accesskey="{{item.accesskey}}">{{item.name}}</span>
-				</div>
-			</button>
+	<md-list ng-controller="MenuItemsCtrl">
+		<a ng-repeat="item in MenuItems" ng-href="{{item.link}}" ng-click="toggleLeft()">
+			<md-list-item>
+				<button class="md-no-style bigMenuItensSlidenav" ng-click="">
+					<div class="menuIcon">
+						<md-icon md-svg-icon="{{item.icon}}"></md-icon>
+					</div>
+					<div class="md-list-item-inner">
+						<span accesskey="{{item.accesskey}}">{{item.name}}</span>
+					</div>
+				</button>
+			</md-list-item>
+		</a>
+		<md-list-item class="sairItem" ng-click="sair()">
+			<button class="md-no-style bigMenuItensSlidenav">
+					<div class="menuIcon">
+						<md-icon svg-class="icon" md-svg-icon="./img/ic_close_black_24px.svg"></md-icon>
+					</div>
+					<div class="md-list-item-inner">
+						<span class="item-menu" accesskey="S">Sair</span>
+					</div>
+				</button>
 		</md-list-item>
-	</a>
-	<md-list-item class="sairItem" ng-click="sair()">
-		<button class="md-no-style bigMenuItensSlidenav">
-				<div class="menuIcon">
-					<md-icon svg-class="icon" md-svg-icon="./img/ic_close_black_24px.svg"></md-icon>
-				</div>
-				<div class="md-list-item-inner">
-					<span class="item-menu" accesskey="S">Sair</span>
-				</div>
-			</button>
-	</md-list-item>
-</md-list>
+	</md-list>

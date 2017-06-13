@@ -1,51 +1,51 @@
-<div layout="column" ng-controller="usuariosEditarCtrl" ng-init="consultar()">
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
-				<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-			</md-button>
-			<h2>
-				<span>{{name}}</span>
-			</h2>
-			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
-				<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
-			</md-button>
-		</div>
-	</md-toolbar>
-	<div class="spaceToolbar"></div>
-	<md-content class="md-padding">
-		<md-card>
-			<md-card-content>
-				<form name="form" ng-submit="editar()">
-					<md-input-container class="md-block">
-						<label>Nome</label>
-						<input required ng-model="usuario.nome" type="text">
-					</md-input-container>
-					<md-input-container class="md-block">
-						<label>Usuário</label>
-						<input required ng-model="usuario.usuario" type="text" disabled>
-					</md-input-container>
-					<div layout="row">
-						<p class="descSelect">Status: </p>
+	<div layout="column" ng-controller="usuariosEditarCtrl" ng-init="consultar()">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
+					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+				</md-button>
+				<h2>
+					<span>{{name}}</span>
+				</h2>
+				<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
+					<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<div class="spaceToolbar"></div>
+		<md-content class="md-padding">
+			<md-card>
+				<md-card-content>
+					<form name="form" ng-submit="editar()">
 						<md-input-container class="md-block">
-							<md-select ng-model="usuario.status" placeholder="Selecione um status" required>
-								<md-option value="{{statuss.status}}" ng-repeat="statuss in statusList">{{statuss.value}}</md-option>
-							</md-select>
+							<label>Nome</label>
+							<input required ng-model="usuario.nome" type="text">
 						</md-input-container>
-					</div>
-					<div layout="row">
-						<p class="descSelect">Tipo de usuário: </p>
 						<md-input-container class="md-block">
-							<md-select ng-model="usuario.admin" placeholder="Permissão do usuário" required>
-								<md-option value="{{admins.admin}}" ng-repeat="admins in adminList">{{admins.value}}</md-option>
-							</md-select>
+							<label>Usuário</label>
+							<input required ng-model="usuario.usuario" type="text" disabled>
 						</md-input-container>
-					</div>
+						<div layout="row">
+							<p class="descSelect">Status: </p>
+							<md-input-container class="md-block">
+								<md-select ng-model="usuario.status" placeholder="Selecione um status" required>
+									<md-option value="{{statuss.status}}" ng-repeat="statuss in statusList">{{statuss.value}}</md-option>
+								</md-select>
+							</md-input-container>
+						</div>
+						<div layout="row">
+							<p class="descSelect">Tipo de usuário: </p>
+							<md-input-container class="md-block">
+								<md-select ng-model="usuario.admin" placeholder="Permissão do usuário" required>
+									<md-option value="{{admins.admin}}" ng-repeat="admins in adminList">{{admins.value}}</md-option>
+								</md-select>
+							</md-input-container>
+						</div>
 
-					<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
-					<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
-				</form>
-			</md-card-content>
-		</md-card>
-	</md-content>
-</div>
+						<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
+						<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
+					</form>
+				</md-card-content>
+			</md-card>
+		</md-content>
+	</div>

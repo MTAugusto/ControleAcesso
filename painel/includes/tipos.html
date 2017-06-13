@@ -1,59 +1,59 @@
-<div ng-controller="tiposCtrl" ng-init="consultarTipos()">
-    <!-- EDITAR CONTROLLER -->
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
-                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <h2>
-				<span>{{name}}</span>
-			</h2>
-            <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
-                <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-    <div class="spaceToolbar"></div>
+  <div ng-controller="tiposCtrl" ng-init="consultarTipos()">
+      <!-- EDITAR CONTROLLER -->
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+              <md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
+                  <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+              </md-button>
+              <h2>
+  				<span>{{name}}</span>
+  			</h2>
+              <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
+                  <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+              </md-button>
+          </div>
+      </md-toolbar>
+      <div class="spaceToolbar"></div>
 
-    <div class="md-padding" layout-margin>
-        <md-card class="semMargem">
-            <md-input-container class="campoPesquisa">
-                <label class="mudacorpesquisar">Pesquisar...</label>
-                <input type="text" ng-model="filtro">
-            </md-input-container>
-            <!--- EDITAR NOME DO ARRAY ABAIXO-->
-            <div ng-hide="true">{{(itensFiltrados = (tipos | filter: filtro))}}</div>
-        </md-card>
-    </div>
+      <div class="md-padding" layout-margin>
+          <md-card class="semMargem">
+              <md-input-container class="campoPesquisa">
+                  <label class="mudacorpesquisar">Pesquisar...</label>
+                  <input type="text" ng-model="filtro">
+              </md-input-container>
+              <!--- EDITAR NOME DO ARRAY ABAIXO-->
+              <div ng-hide="true">{{(itensFiltrados = (tipos | filter: filtro))}}</div>
+          </md-card>
+      </div>
 
-    <div class="md-padding" layout-margin>
+      <div class="md-padding" layout-margin>
 
-        <!-- EDITAR COLUMNS-KEYS COM AS COLUNAS QUE IRÃO EXIBIR -->
-        <mdt-table mdt-row="{
-      data: itensFiltrados,
-      'table-row-id-key': 'id',
-      'column-keys': [
-        'nome',
-        'valorporhora',
-        'valorpormes'
-      ]
-    }">
-            <mdt-header-row>
-                <!-- COLOCAR UM MD-COLUMN PRA CADA COLUNA EXIBIDA ACIMA NO COLUMN-KEYS-->
-                <mdt-column align-rule="left">Tipo</mdt-column>
-                <mdt-column align-rule="right">Valor por hora</mdt-column>
-                <mdt-column align-rule="right">Valor por mês</mdt-column>
-            </mdt-header-row>
-            <mdt-custom-cell column-key="nome">
-                <!-- COLOCAR O COLUMN-KEY CLICAVEL-->
-                <!-- EDITAR CAMINHO DO LINK ABAIXO -->
-                <a ng-href="#/tipos/editar?id={{clientScope.getTiposPorId(rowId).id}}">{{clientScope.getTiposPorId(rowId).nome}}</a>
-            </mdt-custom-cell>
-        </mdt-table>
+          <!-- EDITAR COLUMNS-KEYS COM AS COLUNAS QUE IRÃO EXIBIR -->
+          <mdt-table mdt-row="{
+        data: itensFiltrados,
+        'table-row-id-key': 'id',
+        'column-keys': [
+          'nome',
+          'valorporhora',
+          'valorpormes'
+        ]
+      }">
+              <mdt-header-row>
+                  <!-- COLOCAR UM MD-COLUMN PRA CADA COLUNA EXIBIDA ACIMA NO COLUMN-KEYS-->
+                  <mdt-column align-rule="left">Tipo</mdt-column>
+                  <mdt-column align-rule="right">Valor por hora</mdt-column>
+                  <mdt-column align-rule="right">Valor por mês</mdt-column>
+              </mdt-header-row>
+              <mdt-custom-cell column-key="nome">
+                  <!-- COLOCAR O COLUMN-KEY CLICAVEL-->
+                  <!-- EDITAR CAMINHO DO LINK ABAIXO -->
+                  <a ng-href="#/tipos/editar?id={{clientScope.getTiposPorId(rowId).id}}">{{clientScope.getTiposPorId(rowId).nome}}</a>
+              </mdt-custom-cell>
+          </mdt-table>
 
-        <md-button class="md-fab md-primary" ng-href="#/tipos/inserir" aria-label="Adicionar">
-            <!-- EDITAR CAMINHO ACIMA -->
-            <md-icon md-svg-src="img/icons/add.svg"></md-icon>
-        </md-button>
-    </div>
-</div>
+          <md-button class="md-fab md-primary" ng-href="#/tipos/inserir" aria-label="Adicionar">
+              <!-- EDITAR CAMINHO ACIMA -->
+              <md-icon md-svg-src="img/icons/add.svg"></md-icon>
+          </md-button>
+      </div>
+  </div>

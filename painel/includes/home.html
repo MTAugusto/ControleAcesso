@@ -1,105 +1,105 @@
-<div ng-init="consultarCaixa()" id="popupContainer">
-	<md-toolbar>
-		<div class="md-toolbar-tools">
-			<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
-				<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-			</md-button>
-			<h2>
-				<span>{{name}}</span>
-			</h2>
-			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
-				<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
-			</md-button>
-		</div>
-	</md-toolbar>
-	<div class="spaceToolbar"></div>
+	<div ng-init="consultarCaixa()" id="popupContainer">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
+					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+				</md-button>
+				<h2>
+					<span>{{name}}</span>
+				</h2>
+				<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
+					<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<div class="spaceToolbar"></div>
 
-	<div ng-cloak>
-		<md-content>
-			<md-tabs md-dynamic-height md-border-bottom>
-				<md-tab label="Entrada de veículo" ng-init="consultarVeiculos()">
-					<md-content class="md-padding">
-						<md-card>
-							<md-card-content>
-								<p ng-if="!caixaAberto">Atenção: seu caixa diário está fechado, para fazer saídas de veículos é necessário abri-lo.</p>
-								<form ng-submit="inserirEntrada(veiculoId)">
-									<div layout="row" layout-align="center center">
-										<p class="descSelect">Placa do veículo: </p>
-										<md-input-container class="md-block">
-											<md-select ng-model="veiculoId" placeholder="Veículo" required>
-												<md-option value="{{veiculo.id}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
-											</md-select>
-										</md-input-container>
-									
-
-				                    	<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir entrada</md-button>
-				                    </div>
-				                    <div layout="row" layout-align="center center">
-				                    	<md-button type="button" ng-click="cadastrarVeiculo()" ng-disabled="form.$invalid" class="md-raised right">Cadastrar novo veículo</md-button>
-				                    </div>
-			                    </form>
-							</md-card-content>
-						</md-card>
-					</md-content>
-				</md-tab>
-				<md-tab label="Saída de veículo" ng-if="caixaAberto">
-					<md-content class="md-padding">
-						<md-card ng-if="!finalizacao">
-							<md-card-content >
-								<form ng-submit="inserirSaida(placa, cortesia)">
-
-									<div layout="row" layout-align="center center">
-										<p class="descSelect">Placa do veículo: </p>
-										<md-input-container class="md-block">
-											<md-select ng-model="placa" placeholder="Veículo" required>
-												<md-option value="{{veiculo.placa}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
-											</md-select>
-										</md-input-container>
-									</div>
-
-									<div layout="row" layout-align="center center">
-				                        <md-switch class="md-primary" name="special" ng-model="cortesia" required>
-								          Cortesia
-								        </md-switch>
-				                    </div>
-
-									<div layout="row" layout-align="center center">
-				                    <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir saída</md-button>
-				                    </div>
-
-			                    </form>
-							</md-card-content>
-						</md-card>
-
-						<md-card ng-if="finalizacao">
-							<md-card-content>
-								<form ng-submit="finalizar()">
-									<div ng-if="saida.valortotal > 0">
+		<div ng-cloak>
+			<md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Entrada de veículo" ng-init="consultarVeiculos()">
+						<md-content class="md-padding">
+							<md-card>
+								<md-card-content>
+									<p ng-if="!caixaAberto">Atenção: seu caixa diário está fechado, para fazer saídas de veículos é necessário abri-lo.</p>
+									<form ng-submit="inserirEntrada(veiculoId)">
 										<div layout="row" layout-align="center center">
-											<h3>Valor cobrado: {{saida.valortotal | currency}}</h3>
-										</div>
-										<div layout="row" layout-align="center center">
+											<p class="descSelect">Placa do veículo: </p>
 											<md-input-container class="md-block">
-					                        	<label>Dinheiro</label>
-					                        	<input required ng-model="dinheiro" ui-money-mask="2" currency-symbol="R$" min="saida.valortotal">
-					                   		</md-input-container>
-					                   	</div>
-					                   	<div layout="row" layout-align="center center" ng-if="(dinheiro - saida.valortotal) > 0">
-					                   		<p>Troco: {{(dinheiro - saida.valortotal) | currency}}</p>
-					                   	</div>
-									</div>
-									<div layout="row" layout-align="center center" ng-if="saida.valortotal == 0">
-										<h3>Saída com cortesia efetuada com sucesso!</h3>
-									</div>
+												<md-select ng-model="veiculoId" placeholder="Veículo" required>
+													<md-option value="{{veiculo.id}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
+												</md-select>
+											</md-input-container>
 
-				                    <md-button type="submit" value="submit" ng-disabled="dinheiro" class="md-raised md-primary right">OK</md-button>
-				                 
-			                    </form>
-							</md-card-content>
-						</md-card>
 
-					</md-content>
-				</md-tab>
-		</md-content>
+					                    	<md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir entrada</md-button>
+					                    </div>
+					                    <div layout="row" layout-align="center center">
+					                    	<md-button type="button" ng-click="cadastrarVeiculo()" ng-disabled="form.$invalid" class="md-raised right">Cadastrar novo veículo</md-button>
+					                    </div>
+				                    </form>
+								</md-card-content>
+							</md-card>
+						</md-content>
+					</md-tab>
+					<md-tab label="Saída de veículo" ng-if="caixaAberto">
+						<md-content class="md-padding">
+							<md-card ng-if="!finalizacao">
+								<md-card-content >
+									<form ng-submit="inserirSaida(placa, cortesia)">
+
+										<div layout="row" layout-align="center center">
+											<p class="descSelect">Placa do veículo: </p>
+											<md-input-container class="md-block">
+												<md-select ng-model="placa" placeholder="Veículo" required>
+													<md-option value="{{veiculo.placa}}" ng-repeat="veiculo in veiculos">{{veiculo.placa}}</md-option>
+												</md-select>
+											</md-input-container>
+										</div>
+
+										<div layout="row" layout-align="center center">
+					                        <md-switch class="md-primary" name="special" ng-model="cortesia" required>
+									          Cortesia
+									        </md-switch>
+					                    </div>
+
+										<div layout="row" layout-align="center center">
+					                    <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Inserir saída</md-button>
+					                    </div>
+
+				                    </form>
+								</md-card-content>
+							</md-card>
+
+							<md-card ng-if="finalizacao">
+								<md-card-content>
+									<form ng-submit="finalizar()">
+										<div ng-if="saida.valortotal > 0">
+											<div layout="row" layout-align="center center">
+												<h3>Valor cobrado: {{saida.valortotal | currency}}</h3>
+											</div>
+											<div layout="row" layout-align="center center">
+												<md-input-container class="md-block">
+						                        	<label>Dinheiro</label>
+						                        	<input required ng-model="dinheiro" ui-money-mask="2" currency-symbol="R$" min="saida.valortotal">
+						                   		</md-input-container>
+						                   	</div>
+						                   	<div layout="row" layout-align="center center" ng-if="(dinheiro - saida.valortotal) > 0">
+						                   		<p>Troco: {{(dinheiro - saida.valortotal) | currency}}</p>
+						                   	</div>
+										</div>
+										<div layout="row" layout-align="center center" ng-if="saida.valortotal == 0">
+											<h3>Saída com cortesia efetuada com sucesso!</h3>
+										</div>
+
+					                    <md-button type="submit" value="submit" ng-disabled="dinheiro" class="md-raised md-primary right">OK</md-button>
+
+				                    </form>
+								</md-card-content>
+							</md-card>
+
+						</md-content>
+					</md-tab>
+			</md-content>
+		</div>
 	</div>
-</div>
