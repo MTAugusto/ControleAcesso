@@ -42,12 +42,6 @@
                      link: '#/veiculos',
                      icon: './img/ic_directions_car_black_24px.svg',
                      accesskey: 'V'
-                },
-                {
-                     name: 'Relatórios',
-                     link: '#/relatorios',
-                     icon: './img/ic_directions_car_black_24px.svg',
-                     accesskey: 'R'
                 }];
           } else {
             $scope.MenuItems = [{
