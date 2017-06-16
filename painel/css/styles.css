@@ -65,6 +65,12 @@
   		height: 64px;
   		float: left;
   	}
+    .botao-acessibilidade{
+      transform: translate(-300px);
+    }
+    .botao-font{
+      transform: translate(-300px);
+    }
   }
 
   .spaceToolbar{
@@ -189,4 +195,15 @@
     top: 10px;
     right: 10px;
     position: absolute;
+    width: 24px !important;
+    height: 40px !important;
+    margin: 0 0px !important;
+  }
+  .botao-font{
+    top: 10px;
+    right: 30px;
+    position: absolute;
+    width: 24px !important;
+    height: 40px !important;
+    margin: 0 6px !important;
   }

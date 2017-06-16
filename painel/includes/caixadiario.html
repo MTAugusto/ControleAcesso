@@ -1,24 +1,29 @@
-	<div ng-controller="caixadiarioCtrl" ng-init="consultarCaixa()">
-		<!-- EDITAR CONTROLLER -->
-		<md-toolbar>
-			<div class="md-toolbar-tools">
-				<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
-					<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-				</md-button>
-				<h2>
+<div ng-controller="caixadiarioCtrl" ng-init="consultarCaixa()">
+	<!-- EDITAR CONTROLLER -->
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
+				<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+			</md-button>
+			<h2>
 					<span>{{name}}</span>
 				</h2>
-				<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
-					<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
-				</md-button>
-			</div>
-		</md-toolbar>
-		<div class="spaceToolbar"></div>
+			<md-button class="md-icon-button botao-font" aria-label="Aumentar/Diminuir Fonte" onclick="aplicaFonte()">
+				<md-tooltip md-direction="left">Botão para alteração de tamanho de Fonte</md-tooltip>
+				<md-icon md-svg-icon="./img/ic_sort_by_alpha_white_24px.svg"></md-icon>
+			</md-button>
+			<md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
+				<md-tooltip md-direction="left">Botão para ajuste de Auto Contraste</md-tooltip>
+				<md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="spaceToolbar"></div>
 
-		<div class="md-padding" layout-margin>
-			<div ng-if="caixaAberto">
-				<md-card>
-					<md-card-content>
+	<div class="md-padding" layout-margin>
+		<div ng-if="caixaAberto">
+			<md-card>
+				<md-card-content>
 					<div layout="row" layout-align="center center">
 						<p>Caixa de {{caixadiario.data | date: "fullDate"}}, aberto às {{caixadiario.abertura | date: "mediumTime"}}</p>
 					</div>
@@ -29,12 +34,12 @@
 						<md-button type="button" class="md-raised md-primary right" ng-click="fecharCaixaDiario()">Fechar caixa diário</md-button>
 					</div>
 
-					</md-card-content>
-				</md-card>
+				</md-card-content>
+			</md-card>
 
-				<div layout-margin>
+			<div layout-margin>
 
-					<mdt-table table-card="{title: 'Movimentações'}" mdt-row="{
+				<mdt-table table-card="{title: 'Movimentações'}" mdt-row="{
 							                      data: saidasList,
 							                      'table-row-id-key': 'datasaida',
 							                      'column-keys': [
@@ -45,33 +50,33 @@
 							                          'tipo'
 							                      ]
 							                      }">
-						<mdt-header-row>
-							<mdt-column align-rule="left">Placa</mdt-column>
-							<mdt-column align-rule="right">Entrada</mdt-column>
-							<mdt-column align-rule="right">Saída</mdt-column>
-							<mdt-column align-rule="right">Valor (R$)</mdt-column>
-							<mdt-column align-rule="right">Tipo</mdt-column>
-						</mdt-header-row>
-					</mdt-table>
-				</div>
+					<mdt-header-row>
+						<mdt-column align-rule="left">Placa</mdt-column>
+						<mdt-column align-rule="right">Entrada</mdt-column>
+						<mdt-column align-rule="right">Saída</mdt-column>
+						<mdt-column align-rule="right">Valor (R$)</mdt-column>
+						<mdt-column align-rule="right">Tipo</mdt-column>
+					</mdt-header-row>
+				</mdt-table>
+			</div>
 
-				<!-- <md-card>
+			<!-- <md-card>
 					<md-card-content>
 						<p>Ações</p>
 						<md-button type="button" class="md-raised md-primary right" ng-click="fecharCaixaDiario()">Fechar caixa diário</md-button>
 						<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
 					</md-card-content>
 				</md-card> -->
-			</div>
-			<div ng-if="!caixaAberto">
-				<md-card>
-					<md-card-content>
-						<p>O caixa diário está fechado.</p>
-						<p>Abra o caixa diário para fazer saídas de veículos.</p>
-						<md-button type="button" class="md-raised md-primary right" ng-click="abrirCaixaDiario()">Abrir caixa diário</md-button>
-						<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
-					</md-card-content>
-				</md-card>
-			</div>
+		</div>
+		<div ng-if="!caixaAberto">
+			<md-card>
+				<md-card-content>
+					<p>O caixa diário está fechado.</p>
+					<p>Abra o caixa diário para fazer saídas de veículos.</p>
+					<md-button type="button" class="md-raised md-primary right" ng-click="abrirCaixaDiario()">Abrir caixa diário</md-button>
+					<md-button type="button" class="md-raised right" ng-click="cancelar()">Cancelar</md-button>
+				</md-card-content>
+			</md-card>
 		</div>
 	</div>
+</div>

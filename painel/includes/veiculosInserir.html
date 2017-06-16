@@ -1,63 +1,68 @@
-  <div layout="column" ng-controller="veiculosInserirCtrl" ng-init="consultar()">
-      <md-toolbar>
-          <div class="md-toolbar-tools">
-              <md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
-                  <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-              </md-button>
-              <h2>
+<div layout="column" ng-controller="veiculosInserirCtrl" ng-init="consultar()">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button ng-click="toggleLeft()" class="md-button" hide-gt-md="" aria-label="Menu">
+                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <h2>
   				<span>{{name}}</span>
   			</h2>
-              <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
-                  <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
-              </md-button>
-          </div>
-      </md-toolbar>
-      <div class="spaceToolbar"></div>
-      <md-content class="md-padding">
-          <md-card>
-              <md-card-content>
-                  <form name="form" ng-submit="inserir()">
-                      <md-input-container class="md-block">
-                          <label>Placa</label>
-                          <input required ng-model="veiculo.placa" type="text">
-                      </md-input-container>
-                      <md-input-container class="md-block">
-                          <label>Modelo</label>
-                          <input required ng-model="veiculo.modelo" type="text">
-                      </md-input-container>
-                      <md-input-container class="md-block">
-                          <label>Cor</label>
-                          <input required ng-model="veiculo.cor" type="text">
-                      </md-input-container>
-                      <div layout="row">
-                          <p class="descSelect">Cobrança: </p>
-                          <md-input-container class="md-block">
-                              <md-select ng-model="veiculo.ismensal" placeholder="Selecione o tipo de cobrança">
-                                  <md-option value="{{mensalidades.ismensal}}" ng-repeat="mensalidades in mensalidadesList">{{mensalidades.desc}}</md-option>
-                              </md-select>
-                          </md-input-container>
-                      </div>
-                      <div layout="row">
-                          <p class="descSelect">Tipo do veículo: </p>
-                          <md-input-container class="md-block">
-                              <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo do veículo">
-                                  <md-option value="{{tipo.id}}" ng-repeat="tipo in tipos">{{tipo.nome}}</md-option>
-                              </md-select>
-                          </md-input-container>
-                      </div>
-                      <div layout="row">
-                          <p class="descSelect">Proprietário do veículo: </p>
-                          <md-input-container class="md-block">
-                              <md-select ng-model="veiculo.cliente" placeholder="Selecione um cliente">
-                                  <md-option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{cliente.nome}}</md-option>
-                              </md-select>
-                          </md-input-container>
-                          <md-button type="button" class="md-raised right" ng-click="novoCliente()">Novo cliente</md-button>
-                      </div>
-                      <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
-                      <md-button type="button" class="md-raised md-accent right" ng-click="cancelar()">Cancelar</md-button>
-                  </form>
-              </md-card-content>
-          </md-card>
-      </md-content>
-  </div>
+            <md-button class="md-icon-button botao-font" aria-label="Aumentar/Diminuir Fonte" onclick="aplicaFonte()">
+                <md-tooltip md-direction="left">Botão para alteração de tamanho de Fonte</md-tooltip>
+                <md-icon md-svg-icon="./img/ic_sort_by_alpha_white_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
+                <md-tooltip md-direction="left">Botão para ajuste de Auto Contraste</md-tooltip>
+                <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class="spaceToolbar"></div>
+    <md-content class="md-padding">
+        <md-card>
+            <md-card-content>
+                <form name="form" ng-submit="inserir()">
+                    <md-input-container class="md-block">
+                        <label>Placa</label>
+                        <input required ng-model="veiculo.placa" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Modelo</label>
+                        <input required ng-model="veiculo.modelo" type="text">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Cor</label>
+                        <input required ng-model="veiculo.cor" type="text">
+                    </md-input-container>
+                    <div layout="row">
+                        <p class="descSelect">Cobrança: </p>
+                        <md-input-container class="md-block">
+                            <md-select ng-model="veiculo.ismensal" placeholder="Selecione o tipo de cobrança">
+                                <md-option value="{{mensalidades.ismensal}}" ng-repeat="mensalidades in mensalidadesList">{{mensalidades.desc}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <p class="descSelect">Tipo do veículo: </p>
+                        <md-input-container class="md-block">
+                            <md-select ng-model="veiculo.tipo" placeholder="Selecione o tipo do veículo">
+                                <md-option value="{{tipo.id}}" ng-repeat="tipo in tipos">{{tipo.nome}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <p class="descSelect">Proprietário do veículo: </p>
+                        <md-input-container class="md-block">
+                            <md-select ng-model="veiculo.cliente" placeholder="Selecione um cliente">
+                                <md-option value="{{cliente.id}}" ng-repeat="cliente in clientes">{{cliente.nome}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-button type="button" class="md-raised right" ng-click="novoCliente()">Novo cliente</md-button>
+                    </div>
+                    <md-button type="submit" value="submit" ng-disabled="form.$invalid" class="md-raised md-primary right">Salvar</md-button>
+                    <md-button type="button" class="md-raised md-accent right" ng-click="cancelar()">Cancelar</md-button>
+                </form>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>
