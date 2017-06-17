@@ -70,13 +70,13 @@
   		float: left;
   	}
     .botao-acessibilidade{
-      transform: translate(-300px);
+      transform: translate(-320px);
     }
     .botao-font-au{
-      transform: translate(-300px);
+      transform: translate(-320px);
     }
     .botao-font-dm{
-      transform: translate(-300px);
+      transform: translate(-320px);
     }
   }
 
@@ -250,7 +250,7 @@
   }
   .botao-font-dm{
     top: 10px;
-    right: 10px;
+    right: 5px;
     position: absolute;
     width: 24px !important;
     height: 40px !important;
