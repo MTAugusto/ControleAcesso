@@ -24,3 +24,16 @@
             aumentafonte.fontSize = '1.1em';
        }
   }
+
+  function diminuiFonte() {
+       let diminuirfonte = document.querySelector('body').style;
+       if (diminuirfonte != '1.0em') {
+            let splitFont = diminuirfonte.fontSize.substring(0, 3);
+            let convertValueFont = parseFloat(splitFont);
+            if (convertValueFont >= 1.0) {
+                 diminuirfonte.fontSize = (convertValueFont - 0.1) + "em";
+            }
+       }
+
+
+  }
