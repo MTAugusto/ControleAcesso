@@ -7,13 +7,17 @@
             <h2>
   				<span>{{name}}</span>
   			</h2>
-            <md-button class="md-icon-button botao-font" aria-label="Aumentar/Diminuir Fonte" onclick="aplicaFonte()">
-                <md-tooltip md-direction="left">Botão para alteração de tamanho de Fonte</md-tooltip>
-                <md-icon md-svg-icon="./img/ic_sort_by_alpha_white_24px.svg"></md-icon>
+            <md-button class="md-icon-button botao-font-au" aria-label="Aumentar/Diminuir Fonte" onclick="aumentaFonte()">
+                <md-tooltip md-direction="left">Botão para aumentar de tamanho de Fonte</md-tooltip>
+                <md-icon md-svg-icon="./img/ic_format_size_white_24px.svg"></md-icon>
             </md-button>
             <md-button class="md-icon-button botao-acessibilidade" aria-label="Auto contraste" onclick="aplicaAutoContraste()">
                 <md-tooltip md-direction="left">Botão para ajuste de Auto Contraste</md-tooltip>
                 <md-icon md-svg-icon="./img/ic_brightness_auto_white_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button botao-font-dm" aria-label="Aumentar/Diminuir Fonte" onclick="diminuiFonte()">
+                <md-tooltip md-direction="left">Botão para diminuir de tamanho de Fonte</md-tooltip>
+                <md-icon md-svg-icon="./img/ic_text_fields_white_24px.svg"></md-icon>
             </md-button>
         </div>
     </md-toolbar>
